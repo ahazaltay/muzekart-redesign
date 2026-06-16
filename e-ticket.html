@@ -225,9 +225,15 @@
                                 <option value="republic" data-price="150">Ankara Cumhuriyet Müzesi (₺150)</option>
                                 <option value="pass_turkiye" data-price="3500">MuseumPass Türkiye (₺3500)</option>
                                 <option value="pass_istanbul" data-price="2200">MuseumPass İstanbul (₺2200)</option>
-                                <option value="pass_kapadokya" data-price="1000">MuseumPass Kapadokya (₺1000)</option>
-                                <option value="pass_mediterranean" data-price="2200">MuseumPass Akdeniz (₺2200)</option>
-                                <option value="pass_muzekart" data-price="60">MüzeKart+ (₺60)</option>
+                                <option value="pass_aegean" data-price="2000">MuseumPass Ege (₺2000)</option>
+                                <option value="pass_mediterranean" data-price="1900">MuseumPass Akdeniz (₺1900)</option>
+                                <option value="pass_kapadokya" data-price="1400">MuseumPass Kapadokya (₺1400)</option>
+                                <option value="pass_muzekart" data-price="200">MüzeKart+ (₺200)</option>
+                                <option value="pass_discounted" data-price="100">İndirimli MüzeKart (₺100)</option>
+                                <option value="pass_academic" data-price="100">MüzeKart Akademi (₺100)</option>
+                                <option value="pass_diplomat" data-price="60">MüzeKart Diplomat (₺60)</option>
+                                <option value="pass_disabled" data-price="0">Engelsiz MüzeKart (₺0)</option>
+                                <option value="pass_muzekart99" data-price="750">Mobil MüzeKart 99 (₺750)</option>
                             </select>
                         </div>
 
@@ -639,15 +645,13 @@
         const boxGuide = document.getElementById('type-box-guide');
 
         // Reset inputs disabled states & opacity
-        standardRadio.disabled = false;
-        citizenRadio.disabled = false;
-        guideRadio.disabled = false;
-        boxStandard.style.opacity = '1';
-        boxCitizen.style.opacity = '1';
-        boxGuide.style.opacity = '1';
+        standardRadio.disabled         const isDomesticPass = ['pass_muzekart', 'pass_discounted', 'pass_academic', 'pass_disabled'].includes(itemId);
+        const isDiplomatPass = itemId === 'pass_diplomat';
+        const isMuzekart99 = itemId === 'pass_muzekart99';
+        const isMuseumPass = itemId.startsWith('pass_') && !isDomesticPass && !isDiplomatPass && !isMuzekart99;
 
-        if (itemId === 'pass_muzekart') {
-            // Force T.C. Citizen for MüzeKart+
+        if (isDomesticPass) {
+            // Force T.C. Citizen for domestic cards
             citizenRadio.checked = true;
             standardRadio.disabled = true;
             guideRadio.disabled = true;
@@ -657,19 +661,63 @@
             // Show warning banner
             warningBanner.classList.remove('hidden');
             if (lang === 'tr') {
-                warningText.textContent = "Bilgilendirme: MüzeKart+ yalnızca T.C. Vatandaşları için geçerlidir. Adım 2'de geçerli bir T.C. Kimlik Numarası girmeniz gerekmektedir.";
+                warningText.textContent = "Bilgilendirme: Bu kart yalnızca T.C. Vatandaşları için geçerlidir. Adım 2'de geçerli bir T.C. Kimlik Numarası girmeniz gerekmektedir.";
                 visitorIdLabel.textContent = "T.C. KİMLİK NUMARASI";
                 visitorIdInput.placeholder = "11 haneli T.C. Kimlik numaranız...";
             } else if (lang === 'de') {
-                warningText.textContent = "Information: MüzeKart+ ist ausschließlich für TR-Bürger bestimmt. In Schritt 2 müssen Sie eine gültige TR-Identifikationsnummer eingeben.";
+                warningText.textContent = "Information: Diese Karte ist ausschließlich für TR-Bürger bestimmt. In Schritt 2 müssen Sie eine gültige TR-Identifikationsnummer eingeben.";
                 visitorIdLabel.textContent = "TR-IDENTIFIKATIONSNUMMER";
                 visitorIdInput.placeholder = "11-stellige TR-Identifikationsnummer...";
             } else {
-                warningText.textContent = "Information: MüzeKart+ is exclusively for T.C. Citizens. In Step 2, you must enter a valid 11-digit T.C. ID Number.";
+                warningText.textContent = "Information: This card is exclusively for T.C. Citizens. In Step 2, you must enter a valid 11-digit T.C. ID Number.";
                 visitorIdLabel.textContent = "T.C. CITIZEN ID NUMBER";
                 visitorIdInput.placeholder = "11-digit T.C. ID Number...";
             }
-        } else if (itemId.startsWith('pass_')) {
+        } else if (isMuzekart99) {
+            // Force T.C. Citizen style card behave for 99 (since it uses TR identity system)
+            citizenRadio.checked = true;
+            standardRadio.disabled = true;
+            guideRadio.disabled = true;
+            boxStandard.style.opacity = '0.4';
+            boxGuide.style.opacity = '0.4';
+
+            warningBanner.classList.remove('hidden');
+            if (lang === 'tr') {
+                warningText.textContent = "Bilgilendirme: Mobil MüzeKart 99 yalnızca Türkiye'de geçerli ikamet veya çalışma izni bulunan yabancılar için geçerlidir. Adım 2'de 99 ile başlayan T.C. Yabancı Kimlik No girmelisiniz.";
+                visitorIdLabel.textContent = "YABANCI KİMLİK NUMARASI (99)";
+                visitorIdInput.placeholder = "99 ile başlayan Yabancı Kimlik No...";
+            } else if (lang === 'de') {
+                warningText.textContent = "Information: Mobil MüzeKart 99 gilt nur für Ausländer mit Aufenthaltserlaubnis. In Schritt 2 müssen Sie eine Ausweisnummer eingeben, die mit 99 beginnt.";
+                visitorIdLabel.textContent = "AUSLÄNDER-AUSWEISNUMMER (99)";
+                visitorIdInput.placeholder = "Ausweisnummer beginnend mit 99...";
+            } else {
+                warningText.textContent = "Information: Mobil MüzeKart 99 is only for foreign residents with a residence permit. In Step 2, you must enter a Foreigner ID starting with 99.";
+                visitorIdLabel.textContent = "FOREIGN RESIDENT ID NUMBER (99)";
+                visitorIdInput.placeholder = "Foreigner ID starting with 99...";
+            }
+        } else if (isDiplomatPass) {
+            // Allow diplomat choice
+            citizenRadio.checked = true;
+            standardRadio.disabled = true;
+            guideRadio.disabled = true;
+            boxStandard.style.opacity = '0.4';
+            boxGuide.style.opacity = '0.4';
+
+            warningBanner.classList.remove('hidden');
+            if (lang === 'tr') {
+                warningText.textContent = "Bilgilendirme: MüzeKart Diplomat yalnızca diplomatik misyon çalışanları ve aileleri için geçerlidir. Adım 2'de geçerli bir Kimlik/Pasaport No girmelisiniz.";
+                visitorIdLabel.textContent = "DİPLOMATİK KİMLİK / PASAPORT NO";
+                visitorIdInput.placeholder = "Diplomatik Kimlik veya Pasaport No...";
+            } else if (lang === 'de') {
+                warningText.textContent = "Information: MüzeKart Diplomat gilt nur für Mitarbeiter diplomatischer Vertretungen. In Schritt 2 müssen Sie einen Diplomatenpass oder eine ID eingeben.";
+                visitorIdLabel.textContent = "DIPLOMATENPASS / REISEPASS-NUMMER";
+                visitorIdInput.placeholder = "Diplomatische ID oder Passnummer...";
+            } else {
+                warningText.textContent = "Information: MüzeKart Diplomat is only for diplomatic mission staff and families. In Step 2, you must enter a Diplomatic ID or Passport No.";
+                visitorIdLabel.textContent = "DIPLOMATIC ID / PASSPORT NO";
+                visitorIdInput.placeholder = "Diplomatic ID or Passport Number...";
+            }
+        } else if (isMuseumPass) {
             // Force standard/guided for foreign passes (MuseumPasses are only for tourists, T.C. citizens cannot buy them)
             if (citizenRadio.checked) {
                 standardRadio.checked = true;
@@ -700,7 +748,7 @@
                 visitorIdInput.placeholder = "Kimlik veya Pasaport No...";
             } else if (lang === 'de') {
                 visitorIdLabel.textContent = "TR-ID / PASSNUMMER";
-                visitorIdInput.placeholder = "Reisepass- oder ID-Nummer...";
+                visitorIdInput.placeholder = "Reisepass-oder ID-Nummer...";
             } else {
                 visitorIdLabel.textContent = "T.C. ID / PASSPORT NO";
                 visitorIdInput.placeholder = "ID or Passport No...";
@@ -742,7 +790,7 @@
                 basePrice = 60; // T.C. citizen base museum ticket is cheaper
                 typeName = 'T.C. Vatandaşı';
             } else {
-                typeName = 'MüzeKart+';
+                typeName = selectedOption.text.split('(')[0].trim();
             }
         } else if (typeVal === 'guide') {
             basePrice += 200; // Guided tour surcharge
@@ -843,17 +891,46 @@
         const visitorId = document.getElementById('visitor-id').value.trim();
         const lang = localStorage.getItem('preferred-language') || 'tr';
 
-        if (checkoutItem === 'pass_muzekart') {
+        const isDomesticPass = ['pass_muzekart', 'pass_discounted', 'pass_academic', 'pass_disabled'].includes(checkoutItem);
+        const isDiplomatPass = checkoutItem === 'pass_diplomat';
+        const isMuzekart99 = checkoutItem === 'pass_muzekart99';
+
+        if (isDomesticPass) {
             const isTcValid = /^\d{11}$/.test(visitorId);
             if (!isTcValid) {
                 if (lang === 'tr') {
-                    alert("Hata: MüzeKart+ alımı için geçerli bir 11 haneli T.C. Kimlik Numarası girmelisiniz.");
+                    alert("Hata: Bu kart alımı için geçerli bir 11 haneli T.C. Kimlik Numarası girmelisiniz.");
                 } else if (lang === 'de') {
-                    alert("Fehler: Für den Kauf von MüzeKart+ müssen Sie eine gültige 11-stellige TR-Identifikationsnummer eingeben.");
+                    alert("Fehler: Für den Kauf dieser Karte müssen Sie eine gültige 11-stellige TR-Identifikationsnummer eingeben.");
                 } else {
-                    alert("Error: For MüzeKart+ purchase, you must enter a valid 11-digit T.C. Citizen ID Number.");
+                    alert("Error: For this card purchase, you must enter a valid 11-digit T.C. Citizen ID Number.");
                 }
                 goToStep(2); // Jump back to visitor info step
+                return;
+            }
+        } else if (isMuzekart99) {
+            const isTc99Valid = /^99\d{9}$/.test(visitorId);
+            if (!isTc99Valid) {
+                if (lang === 'tr') {
+                    alert("Hata: Mobil MüzeKart 99 alımı için 99 ile başlayan geçerli bir 11 haneli Yabancı Kimlik Numarası girmelisiniz.");
+                } else if (lang === 'de') {
+                    alert("Fehler: Für den Kauf von Mobil MüzeKart 99 müssen Sie eine gültige 11-stellige Identifikationsnummer eingeben, die mit 99 beginnt.");
+                } else {
+                    alert("Error: For Mobil MüzeKart 99 purchase, you must enter a valid 11-digit Foreigner ID Number starting with 99.");
+                }
+                goToStep(2);
+                return;
+            }
+        } else if (isDiplomatPass) {
+            if (visitorId.length < 5) {
+                if (lang === 'tr') {
+                    alert("Hata: MüzeKart Diplomat satın alımı için geçerli bir Diplomatik Kimlik veya Pasaport No girmelisiniz.");
+                } else if (lang === 'de') {
+                    alert("Fehler: Für den Kauf der MüzeKart Diplomat müssen Sie einen gültigen Diplomatenpass oder eine ID eingeben.");
+                } else {
+                    alert("Error: For MüzeKart Diplomat purchase, you must enter a valid Diplomatic ID or Passport Number.");
+                }
+                goToStep(2);
                 return;
             }
         } else if (checkoutItem.startsWith('pass_')) {
