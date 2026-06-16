@@ -59,6 +59,20 @@
             display: inline-block;
             vertical-align: middle;
         }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(4deg); }
+        }
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(15px) rotate(-4deg); }
+        }
+        .animate-float-slow {
+            animation: float-slow 16s ease-in-out infinite;
+        }
+        .animate-float-reverse {
+            animation: float-reverse 20s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-elegant-gold selection:text-white transition-colors duration-300">
@@ -70,14 +84,14 @@
             <a class="font-display-lg text-xl md:text-2xl tracking-tighter flex items-center gap-2 whitespace-nowrap" href="index.html">
                 <!-- SVG Logo: Black circle with white 'M' -->
                 <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" class="fill-black stroke-black dark:fill-none dark:stroke-white transition-all duration-300" stroke-width="6"/>
+                    <circle cx="50" cy="50" r="45" class="logo-circle transition-all duration-300" stroke-width="6"/>
                     <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
                 </svg>
                 <span><span class="text-primary">Müze</span><span class="text-deep-charcoal dark:text-white">Kart</span></span>
             </a>
             <div class="hidden lg:flex gap-4 xl:gap-5 items-center">
                 <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="index.html" data-i18n="nav_home">Home</a>
-                <a class="text-on-surface hover:text-elegant-gold transition-colors font-body-md text-sm font-semibold whitespace-nowrap" href="about.html" data-i18n="nav_about">About</a>
+                <a class="text-on-surface hover:text-elegant-gold transition-colors font-body-md text-sm font-semibold whitespace-nowrap nav-link-active" href="about.html" data-i18n="nav_about">About</a>
                 <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="museums.html" data-i18n="nav_museums">Museums</a>
                 <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="night-museum.html" data-i18n="nav_night">Night Museum</a>
                 <a class="bg-primary text-white hover:bg-elegant-gold transition-colors font-body-md text-xs font-semibold px-3.5 py-1.5 rounded-full whitespace-nowrap ml-1" href="museumpass.html" data-i18n="nav_pass">MuseumPass</a>
@@ -156,102 +170,150 @@
     </div>
 </header>
 
-<main class="pt-20">
-    <!-- About Page Hero Banner -->
-    <section class="relative h-[45vh] w-full overflow-hidden bg-deep-charcoal flex items-center justify-center">
-        <img src="assets/images/cover_about_us.jpg" alt="About Us Cover" class="absolute inset-0 w-full h-full object-cover opacity-60">
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10"></div>
-        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto space-y-4">
-            <span class="font-label-caps text-elegant-gold tracking-widest text-sm" data-i18n="hero_tagline">ZAMANSIZ MİRAS</span>
-            <h1 class="font-display-lg text-4xl md:text-5xl text-white font-bold uppercase tracking-wider" data-i18n="about_title">Hakkımızda</h1>
-            <p class="font-body-lg text-stone-gray text-base md:text-lg max-w-2xl mx-auto" data-i18n="about_subtitle">Bir Ulusun Tarihini ve Kültürel Mirasını Koruyoruz</p>
-        </div>
-    </section>
-
-    <!-- Asymmetric Content Section -->
-    <section class="section container">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<main class="pt-20 bg-background text-on-background transition-colors duration-    <!-- Blue Heritage Wrapper containing all main sections -->
+    <div class="relative w-full bg-gradient-to-br from-[#00A4C3] to-[#005f73] text-white overflow-hidden transition-all duration-300">
+        
+        <!-- Ephesus Background Hero Section (Takes up the entire first fold to avoid peaking other sections) -->
+        <div class="relative w-full min-h-[calc(100vh-5rem)] flex flex-col justify-center py-16 md:py-24"
+             style="background: linear-gradient(to bottom, rgba(0, 164, 195, 0.88), rgba(0, 95, 115, 0.95)), url('assets/images/ephesus.png') center/cover no-repeat; background-blend-mode: multiply;">
             
-            <!-- Left Side: Deep Rooted Legacy Details (7 Cols) -->
-            <div class="lg:col-span-7 space-y-6">
-                <span class="font-label-caps text-elegant-gold tracking-widest block" data-i18n="featured_tag">SEÇKİN KOLEKSİYON</span>
-                <h2 class="font-headline-lg text-3xl md:text-4xl text-deep-charcoal dark:text-white font-bold" data-i18n="about_legacy_title">Köklü Mirasımız</h2>
-                <div class="w-16 h-[2px] bg-elegant-gold my-4"></div>
-                <p class="font-body-lg text-on-surface-variant dark:text-surface-variant leading-relaxed text-justify" data-i18n="about_legacy_text1">
-                    Türkiye Cumhuriyeti Kültür ve Turizm Bakanlığı denetimindeki MÜZE portalı, Anadolu'nun binlerce yıllık medeniyet birikimini dünyaya sunma misyonuyla kurulmuştur. Göbeklitepe'den Efes'e, Truva'dan Selçuklu ve Osmanlı miraslarına uzanan bu zengin topraklar, insanlığın ortak hafızasıdır.
-                </p>
-                <p class="font-body-md text-on-surface-variant/80 dark:text-surface-variant/80 leading-relaxed text-justify" data-i18n="about_legacy_text2">
-                    Teknolojiyi kültürel mirasın korunması ve erişilebilir kılınması için entegre ederek, yerli ve yabancı tüm ziyaretçilerin bu eşsiz hazinelere en konforlu şekilde erişmesini hedefliyoruz. Müzelerimiz sadece geçmişi değil, aynı zamanda geleceğe ilham veren ortak değerlerimizi temsil eder.
-                </p>
-            </div>
-
-            <!-- Right Side: Editorial Image Block (5 Cols) -->
-            <div class="lg:col-span-5 relative">
-                <!-- Large Image Border Accent -->
-                <div class="absolute -inset-4 border border-elegant-gold/20 rounded z-0"></div>
-                <!-- Image Wrapper -->
-                <div class="relative z-10 card-editorial-image aspect-[4/5] rounded shadow-lg overflow-hidden border border-stone-gray dark:border-on-surface-variant">
-                    <img src="assets/images/museum_statue_bust.png" alt="Museum Sculpture Bust" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            <!-- Page Title: Hakkımızda -->
+            <div class="relative z-10 max-w-container-max w-full mx-auto px-desktop mb-10">
+                <div class="pl-4 border-l-2 border-cyan-200/60">
+                    <span class="text-[10px] md:text-xs font-bold text-cyan-200 uppercase tracking-widest block mb-2" data-i18n="about_tag_hakkimizda">KÜLTÜR HİZMETLERİ</span>
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-sans font-bold text-white tracking-tight leading-none" style="font-family: 'Inter', sans-serif;" data-i18n="about_title">Hakkımızda</h1>
                 </div>
             </div>
+
+            <!-- Section 1: MüzeKart Nedir? (Free Text Flow, No Boxes) -->
+            <section class="relative z-10 max-w-container-max w-full mx-auto px-desktop space-y-6">
+                <div class="pl-4 border-l-2 border-cyan-200/60">
+                    <span class="text-[10px] md:text-xs font-bold text-cyan-200 uppercase tracking-widest block mb-2" data-i18n="about_tag_nedir">DİJİTAL DÖNÜŞÜM</span>
+                    <h2 class="text-xl md:text-2xl font-sans font-bold text-white" style="font-family: 'Inter', sans-serif;" data-i18n="about_what_title">MüzeKart Nedir?</h2>
+                </div>
+                
+                <div class="space-y-6 text-white/90 text-sm md:text-base leading-relaxed text-left font-sans max-w-4xl pl-4">
+                    <p data-i18n="about_what_p1" class="text-base font-semibold text-white leading-normal">MüzeKart, kullanıcıların Türkiye’deki müze ve ören yerlerine daha kolay erişmesini sağlayan dijital ve kart tabanlı bir kültür hizmetidir. T.C. Kültür ve Turizm Bakanlığı, Milli Saraylar ve Çanakkale Alan Başkanlığı’na bağlı 350’den fazla müze ve ören yerinde kullanılabilir.</p>
+                    <p data-i18n="about_what_p2">Bu hizmet, T.C. Kültür ve Turizm Bakanlığı ile ilgili bağlı kurumların müze ve ören yeri ziyaret süreçlerini destekleyen resmi dijital hizmet altyapısıdır.</p>
+                    <p data-i18n="about_what_p3">MüzeKart ile kullanıcılar kart satın alma, mobil kart oluşturma, geçerli müze ve ören yerlerini görüntüleme, ziyaret bilgilerine ulaşma ve hesap işlemlerini yönetme gibi hizmetlere tek platform üzerinden erişebilir. Mobil MüzeKart sayesinde kart dijital olarak oluşturulabilir ve karekod ile temassız giriş yapılabilir.</p>
+                </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Milestones Timeline Section -->
-    <section class="section bg-stone-gray/10 dark:bg-stone-gray/5 border-y border-stone-gray dark:border-on-surface-variant">
-        <div class="container">
-            <div class="text-center mb-16">
-                <span class="font-label-caps text-elegant-gold tracking-widest block mb-2" data-i18n="hero_tagline">KRONOLOJİ</span>
-                <h2 class="font-headline-lg text-3xl md:text-4xl text-deep-charcoal dark:text-white" data-i18n="about_timeline_title">Kültür Tarihimizdeki Önemli Kilometre Taşları</h2>
-                <div class="w-12 h-[2px] bg-elegant-gold mx-auto mt-4"></div>
+        <!-- Section 2: Kimler Kullanabilir? (Free Text 3-Column Grid, No Boxes) -->
+        <section class="relative z-10 py-16 md:py-24 max-w-container-max mx-auto px-desktop border-t border-white/10">
+            <div class="mb-10 pl-4 border-l-2 border-cyan-200/60">
+                <span class="text-[10px] md:text-xs font-bold text-cyan-200 uppercase tracking-widest block mb-2" data-i18n="about_tag_kimler">ZİYARETÇİ SEÇENEKLERİ</span>
+                <h2 class="text-xl md:text-2xl font-sans font-bold text-white" style="font-family: 'Inter', sans-serif;" data-i18n="about_who_title">Kimler Kullanabilir?</h2>
             </div>
 
-            <!-- Vertical Timeline Layout -->
-            <div class="relative border-l-2 border-elegant-gold/30 max-w-4xl mx-auto pl-8 space-y-12">
-                <!-- Timeline Item 1 -->
-                <div class="relative group">
-                    <!-- Dot -->
-                    <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-paper-white dark:bg-deep-charcoal border-2 border-elegant-gold flex items-center justify-center transition-all duration-300 group-hover:bg-elegant-gold z-10">
-                        <div class="w-2 h-2 rounded-full bg-elegant-gold group-hover:bg-white transition-all"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-left pl-4">
+                <!-- Column 1: Citizens -->
+                <div class="space-y-4 flex flex-col justify-between h-full">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-cyan-200 text-2xl">badge</span>
+                            <h3 class="font-sans text-base md:text-lg text-white font-bold leading-snug" data-i18n="about_who_card1_title">T.C. Vatandaşları</h3>
+                        </div>
+                        <p class="font-sans text-xs md:text-sm text-white/80 leading-relaxed text-left" data-i18n="about_who_card1_desc">Türkiye Cumhuriyeti vatandaşları, 5203 sayılı Kanun'a tabi Mavi Kart sahipleri ve KKTC vatandaşları MüzeKart hizmetlerinden tam olarak faydalanabilirler.</p>
                     </div>
-                    <!-- Card content -->
-                    <div class="bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant p-6 rounded shadow-sm hover:border-elegant-gold transition-all duration-300">
-                        <span class="font-display-lg text-2xl text-primary dark:text-elegant-gold font-bold block mb-2" data-i18n="about_find_1_date">1891</span>
-                        <h3 class="font-headline-md text-lg text-deep-charcoal dark:text-white mb-2" data-i18n="about_find_1_title">Müze-i Hümayun'un Kurulması</h3>
-                        <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant" data-i18n="about_find_1_desc">Osman Hamdi Bey öncülüğünde Türkiye'nin ilk modern müze binası olan İstanbul Arkeoloji Müzesi ziyarete açıldı.</p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="relative group">
-                    <!-- Dot -->
-                    <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-paper-white dark:bg-deep-charcoal border-2 border-elegant-gold flex items-center justify-center transition-all duration-300 group-hover:bg-elegant-gold z-10">
-                        <div class="w-2 h-2 rounded-full bg-elegant-gold group-hover:bg-white transition-all"></div>
-                    </div>
-                    <!-- Card content -->
-                    <div class="bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant p-6 rounded shadow-sm hover:border-elegant-gold transition-all duration-300">
-                        <span class="font-display-lg text-2xl text-primary dark:text-elegant-gold font-bold block mb-2" data-i18n="about_find_2_date">1963</span>
-                        <h3 class="font-headline-md text-lg text-deep-charcoal dark:text-white mb-2" data-i18n="about_find_2_title">Efes Kazılarının Başlaması</h3>
-                        <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant" data-i18n="about_find_2_desc">Avusturya Arkeoloji Enstitüsü ve Türk ekiplerin ortaklığında Efes Antik Kentinde modern dönemin en büyük kazı ve restorasyon çalışmaları başlatıldı.</p>
+                    <div class="pt-4 mt-auto">
+                        <a href="museumpass.html?tab=national" class="inline-flex items-center justify-center px-5 py-2.5 border border-cyan-200/40 text-[11px] font-bold text-cyan-200 hover:bg-cyan-200 hover:text-deep-charcoal transition-all rounded-full uppercase tracking-wider gap-2">
+                            <span data-i18n="about_who_btn_muzekart">MüzeKart Ailesini İncele</span>
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Timeline Item 3 -->
-                <div class="relative group">
-                    <!-- Dot -->
-                    <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-paper-white dark:bg-deep-charcoal border-2 border-elegant-gold flex items-center justify-center transition-all duration-300 group-hover:bg-elegant-gold z-10">
-                        <div class="w-2 h-2 rounded-full bg-elegant-gold group-hover:bg-white transition-all"></div>
+                <!-- Column 2: Students -->
+                <div class="space-y-4 flex flex-col justify-between h-full">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-cyan-200 text-2xl">school</span>
+                            <h3 class="font-sans text-base md:text-lg text-white font-bold leading-snug" data-i18n="about_who_card2_title">Öğrenciler</h3>
+                        </div>
+                        <p class="font-sans text-xs md:text-sm text-white/80 leading-relaxed text-left" data-i18n="about_who_card2_desc">Türkiye'de veya KKTC'de eğitim gören tüm yerli ve yabancı öğrenciler, kendilerine özel indirimli kart olanaklarından öğrenci kimlik belgesi ibrazıyla yararlanabilirler.</p>
                     </div>
-                    <!-- Card content -->
-                    <div class="bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant p-6 rounded shadow-sm hover:border-elegant-gold transition-all duration-300">
-                        <span class="font-display-lg text-2xl text-primary dark:text-elegant-gold font-bold block mb-2" data-i18n="about_find_3_date">2018</span>
-                        <h3 class="font-headline-md text-lg text-deep-charcoal dark:text-white mb-2" data-i18n="about_find_3_title">Göbeklitepe'nin UNESCO Listesine Girmesi</h3>
-                        <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant" data-i18n="about_find_3_desc">Dünyanın en eski tapınak merkezi Göbeklitepe, UNESCO Dünya Miras Listesi'ne alınarak tüm dünyaya tanıtıldı.</p>
+                    <div class="pt-4 mt-auto">
+                        <a href="museumpass.html?tab=national" class="inline-flex items-center justify-center px-5 py-2.5 border border-cyan-200/40 text-[11px] font-bold text-cyan-200 hover:bg-cyan-200 hover:text-deep-charcoal transition-all rounded-full uppercase tracking-wider gap-2">
+                            <span data-i18n="about_who_btn_discounted">İndirimli MüzeKart İncele</span>
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Foreign Visitors -->
+                <div class="space-y-4 flex flex-col justify-between h-full">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-cyan-200 text-2xl">explore</span>
+                            <h3 class="font-sans text-base md:text-lg text-white font-bold leading-snug" data-i18n="about_who_card3_title">Yabancı Ziyaretçiler</h3>
+                        </div>
+                        <p class="font-sans text-xs md:text-sm text-white/80 leading-relaxed text-left" data-i18n="about_who_card3_desc">Türkiye'yi ziyaret eden yabancı kullanıcılar için ise MüzeKart yerine MuseumPass seçenekleri sunulmaktadır. MuseumPass, yabancı ziyaretçilerin Türkiye’deki müze ve ören yerlerini bölgesel veya genel seçeneklerle keşfetmesini sağlar.</p>
+                    </div>
+                    <div class="pt-4 mt-auto">
+                        <a href="museumpass.html?tab=nationwide" class="inline-flex items-center justify-center px-5 py-2.5 border border-cyan-200/40 text-[11px] font-bold text-cyan-200 hover:bg-cyan-200 hover:text-deep-charcoal transition-all rounded-full uppercase tracking-wider gap-2">
+                            <span data-i18n="about_who_btn_museumpass">MuseumPass Ailesini İncele</span>
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Section 3: Amacımız (Free Text Vision Block, No Boxes) -->
+        <section class="relative z-10 py-16 md:py-24 max-w-container-max mx-auto px-desktop space-y-12 border-t border-white/10">
+            <div class="space-y-6 text-left">
+                <div class="pl-4 border-l-2 border-cyan-200/60">
+                    <span class="text-[10px] md:text-xs font-bold text-cyan-200 uppercase tracking-widest block mb-2" data-i18n="about_tag_amacimiz">VİZYON VE MİSYON</span>
+                    <h2 class="text-xl md:text-2xl font-sans font-bold text-white" style="font-family: 'Inter', sans-serif;" data-i18n="about_purpose_title">Amacımız</h2>
+                </div>
+                <div class="space-y-4 text-white/80 text-sm md:text-base leading-relaxed text-left font-sans max-w-4xl pl-4">
+                    <p class="font-semibold text-white text-base md:text-lg" data-i18n="about_purpose_p1">MüzeKart’ın amacı, Türkiye’nin kültürel mirasına erişimi kolaylaştırmak ve müze ziyaretlerini daha hızlı, anlaşılır ve planlanabilir hale getirmektir.</p>
+                    <p data-i18n="about_purpose_p2">Dijital kart, karekodla giriş, müze bilgileri ve ziyaret planlama özellikleriyle MüzeKart; kültürel mirasla kullanıcı arasındaki mesafeyi azaltan çağdaş ve güvenilir bir ziyaret deneyimi sunar.</p>
+                </div>
+            </div>
+
+            <!-- Free Text Feature Row (No boxes) -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 pt-10 border-t border-white/10 pl-4">
+                <!-- Feature 1 -->
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-cyan-200 text-2xl">nfc</span>
+                        <h4 class="font-sans text-xs md:text-sm text-white font-bold" data-i18n="about_feature1_title">Dijital Kart</h4>
+                    </div>
+                    <p class="text-[11px] text-white/70 leading-normal text-left" data-i18n="about_feature1_desc">Fiziksel kart taşımaya gerek kalmadan anında profil oluşturma.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-cyan-200 text-2xl">qr_code_scanner</span>
+                        <h4 class="font-sans text-xs md:text-sm text-white font-bold" data-i18n="about_feature2_title">Karekodla Giriş</h4>
+                    </div>
+                    <p class="text-[11px] text-white/70 leading-normal text-left" data-i18n="about_feature2_desc">Temassız, güvenli ve hızlı geçiş imkanı.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-cyan-200 text-2xl">account_balance</span>
+                        <h4 class="font-sans text-xs md:text-sm text-white font-bold" data-i18n="about_feature3_title">Müze Bilgileri</h4>
+                    </div>
+                    <p class="text-[11px] text-white/70 leading-normal text-left" data-i18n="about_feature3_desc">Giriş ücretleri, ziyaret saatleri ve konum rehberi.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-cyan-200 text-2xl">route</span>
+                        <h4 class="font-sans text-xs md:text-sm text-white font-bold" data-i18n="about_feature4_title">Ziyaret Planlama</h4>
+                    </div>
+                    <p class="text-[11px] text-white/70 leading-normal text-left" data-i18n="about_feature4_desc">Kendi rotanızı oluşturup bilet işlemlerini yönetin.</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Contact Form Section -->
     <section id="contact-section" class="section container">
@@ -339,7 +401,7 @@
             <div class="space-y-6">
                 <a class="font-display-lg text-3xl tracking-tighter flex items-center gap-2" href="index.html">
                     <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" class="fill-black stroke-black dark:fill-none dark:stroke-white transition-all duration-300" stroke-width="6"/>
+                        <circle cx="50" cy="50" r="45" class="logo-circle transition-all duration-300" stroke-width="6"/>
                         <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
                     </svg>
                     <span><span class="text-primary">Müze</span><span class="text-white">Kart</span></span>

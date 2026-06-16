@@ -17,13 +17,13 @@ const defaultThemeKeys = {
   '--on-surface-variant': '#4A4D50',
   '--outline': '#8A8D90',
   
-  '--primary-color': '#9C3D2D',         // Anatolian Terracotta Red
-  '--elegant-gold': '#00adc6',          // Heritage Accent Blue
+  '--primary-color': '#10cdda',         // Mavi (Heritage Accent Blue)
+  '--elegant-gold': '#FF9377',          // Accent Gold
   '--background-color': '#FBF9F6',       // Kum Beji
   '--stone-gray': '#E6DFD5',            // Warm Stone Gray
   '--deep-charcoal': '#1E2022',          // Derin Kömür
   '--paper-white': '#FFFFFF',            // Temiz Beyaz
-  '--heritage-blue': '#00A4C3',          // Heritage Accent Blue
+  '--heritage-blue': '#00539C',          // Tertiary Accent Blue
 
   '--font-headline': 'Inter',          // Editorial Header Font
   '--font-body': 'Inter',                // Modern Body/UI Font
@@ -118,11 +118,11 @@ function applyActiveTheme() {
     document.head.appendChild(styleEl);
   }
 
-  const primaryColor = appliedValues['--primary-color'] || defaultThemeKeys['--primary-color'];
-  const elegantGold = appliedValues['--elegant-gold'] || defaultThemeKeys['--elegant-gold'];
-  const background = appliedValues['--background-color'] || defaultThemeKeys['--background-color'];
-  const paperWhite = appliedValues['--paper-white'] || defaultThemeKeys['--paper-white'];
-  const deepCharcoal = appliedValues['--deep-charcoal'] || defaultThemeKeys['--deep-charcoal'];
+  const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color').trim() || appliedValues['--primary-color'] || defaultThemeKeys['--primary-color'];
+  const elegantGold = getComputedStyle(root).getPropertyValue('--elegant-gold').trim() || appliedValues['--elegant-gold'] || defaultThemeKeys['--elegant-gold'];
+  const background = getComputedStyle(root).getPropertyValue('--background-color').trim() || appliedValues['--background-color'] || defaultThemeKeys['--background-color'];
+  const paperWhite = getComputedStyle(root).getPropertyValue('--paper-white').trim() || appliedValues['--paper-white'] || defaultThemeKeys['--paper-white'];
+  const deepCharcoal = getComputedStyle(root).getPropertyValue('--deep-charcoal').trim() || appliedValues['--deep-charcoal'] || defaultThemeKeys['--deep-charcoal'];
 
   styleEl.innerHTML = `
     /* Custom selections & dynamic header scrolls */
@@ -148,6 +148,28 @@ function applyActiveTheme() {
       border-bottom: 1px solid ${hexToRgba(elegantGold, 0.2)} !important;
     }
   `;
+
+  // 4. Dynamically update favicon color to match primary color
+  updateDynamicFavicon(primaryColor);
+}
+
+function updateDynamicFavicon(primaryColor) {
+  let link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.type = 'image/svg+xml';
+  
+  const fillHex = primaryColor.replace('#', '%23');
+  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="45" fill="${fillHex}" stroke="${fillHex}" stroke-width="6"/>
+    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
+  </svg>`;
+  
+  const dataUri = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgContent.trim());
+  link.href = dataUri;
 }
 
 // Set Dark/Light Mode

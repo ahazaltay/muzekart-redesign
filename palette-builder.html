@@ -466,6 +466,9 @@
             }
             updateControls();
             refreshCSSPreview();
+            if (state['--primary-color']) {
+                updateDynamicFavicon(state['--primary-color'], false);
+            }
         }
 
         function parseVariablesBlock(cssText, isDark) {
@@ -612,6 +615,9 @@
             
             updateIframeStyles();
             refreshCSSPreview();
+            if (key === '--primary-color') {
+                updateDynamicFavicon(hex, false);
+            }
         }
 
         function updateColorFromText(key, hex) {
@@ -622,7 +628,37 @@
                 
                 updateIframeStyles();
                 refreshCSSPreview();
+                if (key === '--primary-color') {
+                    updateDynamicFavicon(hex, false);
+                }
             }
+        }
+
+        function updateDynamicFavicon(primaryColor, isDarkMode) {
+            let link = document.querySelector("link[rel~='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.type = 'image/svg+xml';
+            
+            let svgContent = '';
+            if (isDarkMode) {
+                svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="6"/>
+                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
+                </svg>`;
+            } else {
+                const fillHex = primaryColor.replace('#', '%23');
+                svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="${fillHex}" stroke="${fillHex}" stroke-width="6"/>
+                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
+                </svg>`;
+            }
+            
+            const dataUri = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgContent.trim());
+            link.href = dataUri;
         }
 
         function refreshCSSPreview() {
@@ -653,6 +689,9 @@
             updateControls();
             updateIframeStyles();
             refreshCSSPreview();
+            if (state['--primary-color']) {
+                updateDynamicFavicon(state['--primary-color'], false);
+            }
         }
 
         // Utility to slightly adjust hex colors for automatic containers matching base background
