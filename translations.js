@@ -6,6 +6,7 @@ const translations = {
     "nav_museums": "Müzeler",
     "nav_pass": "MuseumPass",
     "nav_ticket": "E-Bilet",
+    "nav_cards": "Kartlar",
     "nav_style": "Tasarım Rehberi",
     "btn_login": "Giriş Yap",
     "btn_register": "Kayıt Ol",
@@ -392,7 +393,94 @@ const translations = {
     "faq_a6": "MüzeKart+ Kültür ve Turizm Bakanlığı'na bağlı tüm devlet müzelerinde geçerlidir. Ancak Topkapı Sarayı Harem Dairesi, Dolmabahçe Sarayı ve Galata Kulesi gibi özel statülü bazı yerlerde veya belediyelere/özel vakıflara ait müzelerde geçersiz olabilir.",
     
     // Museum Detail Page
-    "museum_detail_free_entry_badge": "MüzeKart+ ile ÜCRETSİZ Giriş"
+    "museum_detail_free_entry_badge": "MüzeKart+ ile ÜCRETSİZ Giriş",
+
+    // Cards Page
+    "cards_hero_title": "Müze Kart ve Geçiş Paketleri",
+    "cards_hero_desc": "Kültür ve Turizm Bakanlığı'na bağlı tüm devlet müzeleri ve ören yerlerinde geçerli resmi giriş kartları ve bölgesel turist paketleri.",
+    "cards_tab_all": "Tüm Kartlar",
+    "cards_tab_citizens": "T.C. Vatandaşları",
+    "cards_tab_foreigners": "Yabancı Ziyaretçiler",
+    "cards_lbl_validity": "Geçerlilik:",
+    "cards_lbl_price": "Fiyat:",
+    "cards_lbl_inclusions": "Dahil Olanlar",
+    "cards_lbl_exclusions": "Dahil Olmayanlar",
+    
+    // Card 1: MüzeKart+
+    "c_muzekart_name": "MüzeKart+",
+    "c_muzekart_desc": "T.C. vatandaşlarına özel standart yıllık giriş kartı.",
+    "c_muzekart_val": "365 Gün (1 Yıl)",
+    "c_muzekart_price": "₺60",
+    "c_muzekart_inc": "300'den fazla devlet müzesi ve ören yerine sınırsız giriş.",
+    "c_muzekart_exc": "Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.",
+    
+    // Card 2: İndirimli MüzeKart
+    "c_discounted_name": "İndirimli MüzeKart",
+    "c_discounted_desc": "Öğrenci ve öğretmenlere özel indirimli yıllık giriş kartı.",
+    "c_discounted_val": "365 Gün (1 Yıl)",
+    "c_discounted_price": "₺30",
+    "c_discounted_inc": "Tüm devlet müzelerine indirimli yıllık erişim hakları.",
+    "c_discounted_exc": "Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise hariçtir.",
+
+    // Card 3: MüzeKart Akademi
+    "c_academic_name": "MüzeKart Akademi",
+    "c_academic_desc": "YÖK'e bağlı akademisyenler ve öğretim görevlileri için özel kart.",
+    "c_academic_val": "365 Gün (1 Yıl)",
+    "c_academic_price": "₺30",
+    "c_academic_inc": "Üniversite öğretim elemanları için 300+ müzeye sınırsız giriş.",
+    "c_academic_exc": "Özel sergiler, Harem Dairesi ve özel ören yeri bölümleri hariçtir.",
+
+    // Card 4: MuseumPass Türkiye
+    "c_pass_tr_name": "MuseumPass Türkiye",
+    "c_pass_tr_desc": "Türkiye genelindeki tüm tarihi alanlara turist paketi.",
+    "c_pass_tr_val": "İlk kullanımdan sonra 15 Gün",
+    "c_pass_tr_price": "€165",
+    "c_pass_tr_inc": "Türkiye genelindeki tüm devlet müzelerine öncelikli giriş.",
+    "c_pass_tr_exc": "Rehberli turlar ve belediyelere/özel vakıflara ait müzeler hariçtir.",
+
+    // Card 5: MuseumPass İstanbul
+    "c_pass_ist_name": "MuseumPass İstanbul",
+    "c_pass_ist_desc": "İstanbul'un dünyaca ünlü kültürel arşivleri için 5 günlük geçiş.",
+    "c_pass_ist_val": "İlk kullanımdan sonra 5 Gün",
+    "c_pass_ist_price": "€105",
+    "c_pass_ist_inc": "Topkapı Sarayı (Harem dahil), Galata Kulesi, Arkeoloji Müzeleri.",
+    "c_pass_ist_exc": "Yerebatan Sarnıcı ve Kız Kulesi gibi bakanlık dışı yapılar hariçtir.",
+
+    // Card 6: MuseumPass Kapadokya
+    "c_pass_cap_name": "MuseumPass Kapadokya",
+    "c_pass_cap_desc": "Eşsiz yeraltı şehirleri ve açık hava müzeleri için 3 günlük geçiş.",
+    "c_pass_cap_val": "İlk kullanımdan sonra 3 Gün",
+    "c_pass_cap_price": "€65",
+    "c_pass_cap_inc": "Göreme Açık Hava Müzesi, Derinkuyu ve Kaymaklı Yeraltı Şehirleri, Ihlara Vadisi.",
+    "c_pass_cap_exc": "Sıcak hava balonu turları ve özel transferler hariçtir.",
+
+    // Card 7: MuseumPass Akdeniz
+    "c_pass_med_name": "MuseumPass Akdeniz",
+    "c_pass_med_desc": "Akdeniz sahilleri boyunca uzanan antik tiyatrolar için 7 günlük geçiş.",
+    "c_pass_med_val": "İlk kullanımdan sonra 7 Gün",
+    "c_pass_med_price": "€90",
+    "c_pass_med_inc": "Antalya, Side, Aspendos, Perge, Alanya Kalesi ve Myra antik kentleri.",
+    "c_pass_med_exc": "Tekne turları ve plaj giriş ücretleri hariçtir.",
+
+    // Card 8: MuseumPass Ege
+    "c_pass_aeg_name": "MuseumPass Ege",
+    "c_pass_aeg_desc": "Ege kıyılarındaki görkemli metropoller için 7 günlük geçiş.",
+    "c_pass_aeg_val": "İlk kullanımdan sonra 7 Gün",
+    "c_pass_aeg_price": "€90",
+    "c_pass_aeg_inc": "Efes Arkeolojik Sitesi, Pamukkale (Hierapolis), Bodrum Kalesi, Bergama.",
+    "c_pass_aeg_exc": "Meryem Ana Evi ve yamaç evleri (Efes) hariçtir.",
+
+    // Comparison Block
+    "comp_title": "Kart Karşılaştırma Tablosu",
+    "comp_subtitle": "Sizin için en uygun kartı ve kapsamını seçin",
+    "comp_th_name": "Kart Adı",
+    "comp_th_price": "Fiyat",
+    "comp_th_validity": "Geçerlilik",
+    "comp_th_coverage": "Kapsam",
+    "comp_th_fasttrack": "Hızlı Geçiş",
+    "comp_yes": "Evet",
+    "comp_no": "Hayır",
+    "comp_custom_limit": "Yılda 2 Kez"
   },
   en: {
     // Navigation
@@ -401,6 +489,7 @@ const translations = {
     "nav_museums": "Museums",
     "nav_pass": "MuseumPass",
     "nav_ticket": "E-Ticket",
+    "nav_cards": "Cards",
     "nav_style": "Style Guide",
     "btn_login": "Login",
     "btn_register": "Register",
@@ -787,7 +876,94 @@ const translations = {
     "faq_a6": "MüzeKart+ is valid at all state museums under the Ministry of Culture and Tourism. It may be invalid at special venues like Topkapi Palace Harem, Dolmabahce Palace, and private/municipal museums.",
     
     // Museum Detail Page
-    "museum_detail_free_entry_badge": "FREE Entry with MüzeKart+"
+    "museum_detail_free_entry_badge": "FREE Entry with MüzeKart+",
+
+    // Cards Page
+    "cards_hero_title": "MüzeKart & MuseumPass Choices",
+    "cards_hero_desc": "Official museum admission cards and regional tourist passes valid in all national museums and ruins of the Ministry of Culture and Tourism.",
+    "cards_tab_all": "All Cards",
+    "cards_tab_citizens": "T.C. Citizens",
+    "cards_tab_foreigners": "International Visitors",
+    "cards_lbl_validity": "Validity:",
+    "cards_lbl_price": "Price:",
+    "cards_lbl_inclusions": "Inclusions",
+    "cards_lbl_exclusions": "Exclusions",
+    
+    // Card 1: MüzeKart+
+    "c_muzekart_name": "MüzeKart+",
+    "c_muzekart_desc": "Standard annual entry card exclusive to T.C. citizens.",
+    "c_muzekart_val": "365 Days (1 Year)",
+    "c_muzekart_price": "₺60",
+    "c_muzekart_inc": "Unlimited entry to more than 300 state museums and ruins.",
+    "c_muzekart_exc": "Excludes Topkapi Palace Harem, Galata Tower, Goreme Dark Church, and Dolmabahce Palace.",
+    
+    // Card 2: İndirimli MüzeKart
+    "c_discounted_name": "Discounted MüzeKart",
+    "c_discounted_desc": "Discounted annual entry card for students and teachers.",
+    "c_discounted_val": "365 Days (1 Year)",
+    "c_discounted_price": "₺30",
+    "c_discounted_inc": "Discounted annual access rights to all state museums.",
+    "c_discounted_exc": "Excludes Topkapi Palace Harem, Galata Tower, and Goreme Dark Church.",
+
+    // Card 3: MüzeKart Akademi
+    "c_academic_name": "MüzeKart Akademi",
+    "c_academic_desc": "Special card for academicians and university teaching staff.",
+    "c_academic_val": "365 Days (1 Year)",
+    "c_academic_price": "₺30",
+    "c_academic_inc": "Unlimited entry to 300+ museums for university staff.",
+    "c_academic_exc": "Excludes special exhibitions, Harem sections, and custom ruins areas.",
+
+    // Card 4: MuseumPass Türkiye
+    "c_pass_tr_name": "MuseumPass Turkey",
+    "c_pass_tr_desc": "Comprehensive tourist pass for all historical sites across Turkey.",
+    "c_pass_tr_val": "15 Days after first use",
+    "c_pass_tr_price": "€165",
+    "c_pass_tr_inc": "Priority fast-track entry to all state museums in Turkey.",
+    "c_pass_tr_exc": "Excludes guided tours and municipal/private foundation museums.",
+
+    // Card 5: MuseumPass İstanbul
+    "c_pass_ist_name": "MuseumPass Istanbul",
+    "c_pass_ist_desc": "A 5-day pass for Istanbul's world-famous cultural treasures.",
+    "c_pass_ist_val": "5 Days after first use",
+    "c_pass_ist_price": "€105",
+    "c_pass_ist_inc": "Topkapi Palace (including Harem), Galata Tower, Archaeological Museums.",
+    "c_pass_ist_exc": "Excludes non-ministry structures such as Basilica Cistern and Maiden's Tower.",
+
+    // Card 6: MuseumPass Kapadokya
+    "c_pass_cap_name": "MuseumPass Cappadocia",
+    "c_pass_cap_desc": "A 3-day pass for unique underground cities and open-air museums.",
+    "c_pass_cap_val": "3 Days after first use",
+    "c_pass_cap_price": "€65",
+    "c_pass_cap_inc": "Goreme Open Air Museum, Derinkuyu & Kaymakli Underground Cities, Ihlara Valley.",
+    "c_pass_cap_exc": "Excludes hot air balloon tours and private transfers.",
+
+    // Card 7: MuseumPass Akdeniz
+    "c_pass_med_name": "MuseumPass Mediterranean",
+    "c_pass_med_desc": "A 7-day pass for ancient theaters along the Mediterranean coast.",
+    "c_pass_med_val": "7 Days after first use",
+    "c_pass_med_price": "€90",
+    "c_pass_med_inc": "Antalya, Side, Aspendos, Perge, Alanya Castle, and Myra ruins.",
+    "c_pass_med_exc": "Excludes boat tours and beach entrance fees.",
+
+    // Card 8: MuseumPass Ege
+    "c_pass_aeg_name": "MuseumPass Aegean",
+    "c_pass_aeg_desc": "A 7-day pass for magnificent ancient metropolises on the Aegean coast.",
+    "c_pass_aeg_val": "7 Days after first use",
+    "c_pass_aeg_price": "€90",
+    "c_pass_aeg_inc": "Ephesus Ancient Site, Pamukkale (Hierapolis), Bodrum Castle, Pergamon.",
+    "c_pass_aeg_exc": "Excludes House of Virgin Mary and Ephesus Terrace Houses.",
+
+    // Comparison Block
+    "comp_title": "Card Comparison Table",
+    "comp_subtitle": "Select the card and coverage that suits you best",
+    "comp_th_name": "Card Name",
+    "comp_th_price": "Price",
+    "comp_th_validity": "Validity",
+    "comp_th_coverage": "Coverage",
+    "comp_th_fasttrack": "Fast Track",
+    "comp_yes": "Yes",
+    "comp_no": "No",
+    "comp_custom_limit": "2 Times/Year"
   },
   de: {
     // Navigation
@@ -796,6 +972,7 @@ const translations = {
     "nav_museums": "Museen",
     "nav_pass": "MuseumPass",
     "nav_ticket": "E-Ticket",
+    "nav_cards": "Karten",
     "nav_style": "Style Guide",
     "btn_login": "Anmelden",
     "btn_register": "Registrieren",
@@ -1182,7 +1359,94 @@ const translations = {
     "faq_a6": "Die MüzeKart+ gilt in allen staatlichen Museen des Ministeriums für Kultur und Tourismus. Ausnahmen sind Sonderbereiche wie der Harem des Topkapi-Palastes, der Dolmabahce-Palast und private Museen.",
     
     // Museum Detail Page
-    "museum_detail_free_entry_badge": "KOSTENLOSER Eintritt mit MüzeKart+"
+    "museum_detail_free_entry_badge": "KOSTENLOSER Eintritt mit MüzeKart+",
+
+    // Cards Page
+    "cards_hero_title": "MüzeKart & MuseumPass Optionen",
+    "cards_hero_desc": "Offizielle Museumseintrittskarten und regionale Touristenpässe, gültig in allen staatlichen Museen und Ruinen des Ministeriums für Kultur und Tourismus.",
+    "cards_tab_all": "Alle Karten",
+    "cards_tab_citizens": "T.C. Bürger",
+    "cards_tab_foreigners": "Internationale Besucher",
+    "cards_lbl_validity": "Gültigkeit:",
+    "cards_lbl_price": "Preis:",
+    "cards_lbl_inclusions": "Inbegriffen",
+    "cards_lbl_exclusions": "Nicht inbegriffen",
+    
+    // Card 1: MüzeKart+
+    "c_muzekart_name": "MüzeKart+",
+    "c_muzekart_desc": "Standard-Jahreseintrittskarte exklusiv für T.C. Staatsbürger.",
+    "c_muzekart_val": "365 Tage (1 Jahr)",
+    "c_muzekart_price": "₺60",
+    "c_muzekart_inc": "Unbegrenzter Eintritt in über 300 staatliche Museen und Ruinen.",
+    "c_muzekart_exc": "Ausgenommen Harem des Topkapı-Palastes, Galataturm, Dunkle Kirche in Göreme und Dolmabahçe-Palast.",
+    
+    // Card 2: İndirimli MüzeKart
+    "c_discounted_name": "Ermäßigte MüzeKart",
+    "c_discounted_desc": "Ermäßigte Jahreskarte für Schüler, Studenten und Lehrer.",
+    "c_discounted_val": "365 Tage (1 Jahr)",
+    "c_discounted_price": "₺30",
+    "c_discounted_inc": "Ermäßigter jährlicher Zugang zu allen staatlichen Museen.",
+    "c_discounted_exc": "Ausgenommen Harem des Topkapı-Palastes, Galataturm und Dunkle Kirche in Göreme.",
+
+    // Card 3: MüzeKart Akademi
+    "c_academic_name": "MüzeKart Akademi",
+    "c_academic_desc": "Sonderkarte für Akademiker und Lehrkräfte an Universitäten.",
+    "c_academic_val": "365 Tage (1 Jahr)",
+    "c_academic_price": "₺30",
+    "c_academic_inc": "Unbegrenzter Eintritt in über 300 Museen für Universitätsmitarbeiter.",
+    "c_academic_exc": "Ausgenommen Sonderausstellungen, Harem-Bereiche und spezielle Ruinenbereiche.",
+
+    // Card 4: MuseumPass Türkiye
+    "c_pass_tr_name": "MuseumPass Türkei",
+    "c_pass_tr_desc": "Umfassender Touristenpass für historische Stätten in der ganzen Türkei.",
+    "c_pass_tr_val": "15 Tage ab der ersten Nutzung",
+    "c_pass_tr_price": "€165",
+    "c_pass_tr_inc": "Schnelleinlass (Fast Track) in allen staatlichen Museen der Türkei.",
+    "c_pass_tr_exc": "Ausgenommen geführte Touren und kommunale/private Stiftungsmuseen.",
+
+    // Card 5: MuseumPass İstanbul
+    "c_pass_ist_name": "MuseumPass Istanbul",
+    "c_pass_ist_desc": "Ein 5-Tages-Pass für die weltberühmten Kulturschätze Istanbuls.",
+    "c_pass_ist_val": "5 Tage ab der ersten Nutzung",
+    "c_pass_ist_price": "€105",
+    "c_pass_ist_inc": "Topkapı-Palast (einschließlich Harem), Galataturm, Archäologische Museen.",
+    "c_pass_ist_exc": "Ausgenommen ministeriumsfremde Bauwerke wie die Zisternenbasilika und der Mädchenturm.",
+
+    // Card 6: MuseumPass Kapadokya
+    "c_pass_cap_name": "MuseumPass Kappadokien",
+    "c_pass_cap_desc": "Ein 3-Tages-Pass für unterirdische Städte und Freilichtmuseen.",
+    "c_pass_cap_val": "3 Tage ab der ersten Nutzung",
+    "c_pass_cap_price": "€65",
+    "c_pass_cap_inc": "Göreme-Freilichtmuseum, unterirdische Städte Derinkuyu & Kaymaklı, Ihlara-Tal.",
+    "c_pass_cap_exc": "Ausgenommen Heißluftballonfahrten und private Transfers.",
+
+    // Card 7: MuseumPass Akdeniz
+    "c_pass_med_name": "MuseumPass Mittelmeer",
+    "c_pass_med_desc": "Ein 7-Tages-Pass für antike Theater an der Mittelmeerküste.",
+    "c_pass_med_val": "7 Tage ab der ersten Nutzung",
+    "c_pass_med_price": "€90",
+    "c_pass_med_inc": "Ruinen von Antalya, Side, Aspendos, Perge, Burg von Alanya und Myra.",
+    "c_pass_med_exc": "Ausgenommen Bootstouren und Strandgebühren.",
+
+    // Card 8: MuseumPass Ege
+    "c_pass_aeg_name": "MuseumPass Ägäis",
+    "c_pass_aeg_desc": "Ein 7-Tages-Pass für antike Metropolen an der Ägäischen Küste.",
+    "c_pass_aeg_val": "7 Tage ab der ersten Nutzung",
+    "c_pass_aeg_price": "€90",
+    "c_pass_aeg_inc": "Ruinen von Ephesos, Pamukkale (Hierapolis), Burg von Bodrum, Pergamon.",
+    "c_pass_aeg_exc": "Ausgenommen Haus der Mutter Maria und Hanghäuser in Ephesos.",
+
+    // Comparison Block
+    "comp_title": "Karten-Vergleichstabelle",
+    "comp_subtitle": "Wählen Sie die Karte und den Leistungsumfang, die am besten zu Ihnen passen",
+    "comp_th_name": "Kartenname",
+    "comp_th_price": "Preis",
+    "comp_th_validity": "Gültigkeit",
+    "comp_th_coverage": "Umfang",
+    "comp_th_fasttrack": "Fast Track",
+    "comp_yes": "Ja",
+    "comp_no": "Nein",
+    "comp_custom_limit": "2 Mal/Jahr"
   }
 };
 
