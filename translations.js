@@ -454,6 +454,22 @@ const translations = {
     "c_muzekart99_inc": "İkamet sahipleri için 300'den fazla devlet müzesine 1 yıl boyunca giriş hakkı.",
     "c_muzekart99_exc": "Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.",
 
+    // Card 12: Mobil MüzeKart
+    "c_mobil_name": "Mobil MüzeKart",
+    "c_mobil_desc": "Müzelerim uygulaması üzerinden anında dijital olarak oluşturulup kullanılan yıllık kart.",
+    "c_mobil_val": "365 Gün (1 Yıl)",
+    "c_mobil_price": "200 TL",
+    "c_mobil_inc": "300'den fazla devlet müzesi ve ören yerine QR kod ile sınırsız giriş.",
+    "c_mobil_exc": "Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.",
+
+    // Card 13: Hediye Mobil MüzeKart
+    "c_hediye_name": "Hediye Mobil MüzeKart",
+    "c_hediye_desc": "Sevdiklerinize hediye edebileceğiniz, Müzelerim uygulaması üzerinden aktif edilen dijital kart.",
+    "c_hediye_val": "365 Gün (1 Yıl)",
+    "c_hediye_price": "200 TL",
+    "c_hediye_inc": "Hediye edilen kişinin Müzelerim uygulaması üzerinden 1 yıl boyunca müzelere QR kod ile girişini sağlar.",
+    "c_hediye_exc": "Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.",
+
     // Card 7: MuseumPass Türkiye
     "c_pass_tr_name": "MuseumPass Türkiye",
     "c_pass_tr_desc": "Türkiye genelindeki tüm tarihi alanlara turist paketi.",
@@ -961,6 +977,22 @@ const translations = {
     "c_muzekart99_inc": "Access to over 300 state museums and ruins for 1 year for permit holders.",
     "c_muzekart99_exc": "Excludes Topkapi Palace Harem, Galata Tower, Goreme Dark Church, and Dolmabahce Palace.",
 
+    // Card 12: Mobil MüzeKart
+    "c_mobil_name": "Mobile MüzeKart",
+    "c_mobil_desc": "Annual digital card created and used instantly via the Müzelerim app.",
+    "c_mobil_val": "365 Days (1 Year)",
+    "c_mobil_price": "200 TL",
+    "c_mobil_inc": "Unlimited QR code entry to over 300 state museums and archaeological sites.",
+    "c_mobil_exc": "Excludes Topkapi Palace Harem, Galata Tower, Goreme Dark Church, and Dolmabahce Palace.",
+
+    // Card 13: Hediye Mobil MüzeKart
+    "c_hediye_name": "Gift Mobile MüzeKart",
+    "c_hediye_desc": "A digital card you can gift, activated through the Müzelerim app.",
+    "c_hediye_val": "365 Days (1 Year)",
+    "c_hediye_price": "200 TL",
+    "c_hediye_inc": "Provides QR code entry to museums for 1 year for the gifted person via the Müzelerim app.",
+    "c_hediye_exc": "Excludes Topkapi Palace Harem, Galata Tower, Goreme Dark Church, and Dolmabahce Palace.",
+
     // Card 7: MuseumPass Türkiye
     "c_pass_tr_name": "MuseumPass Turkey",
     "c_pass_tr_desc": "Comprehensive tourist pass for all historical sites across Turkey.",
@@ -1467,6 +1499,22 @@ const translations = {
     "c_muzekart99_price": "₺750",
     "c_muzekart99_inc": "Zutritt zu über 300 staatlichen Museen und Ruinen für 1 Jahr für Inhaber einer Erlaubnis.",
     "c_muzekart99_exc": "Ausgenommen Harem des Topkapı-Palastes, Galataturm, Dunkle Kirche in Göreme und Dolmabahçe-Palast.",
+
+    // Card 12: Mobil MüzeKart
+    "c_mobil_name": "Mobil MüzeKart",
+    "c_mobil_desc": "Über die Müzelerim-App sofort digital erstellte und genutzte Jahreskarte.",
+    "c_mobil_val": "365 Tage (1 Jahr)",
+    "c_mobil_price": "200 TL",
+    "c_mobil_inc": "Unbegrenzter QR-Code-Einlass zu über 300 staatlichen Museen und archäologischen Stätten.",
+    "c_mobil_exc": "Ausgenommen Harem des Topkapı-Palastes, Galataturm, Dunkle Kirche in Göreme und Dolmabahçe-Palast.",
+
+    // Card 13: Hediye Mobil MüzeKart
+    "c_hediye_name": "Hediye Mobil MüzeKart",
+    "c_hediye_desc": "Eine digitale Karte zum Verschenken, die über die Müzelerim-App aktiviert wird.",
+    "c_hediye_val": "365 Tage (1 Jahr)",
+    "c_hediye_price": "200 TL",
+    "c_hediye_inc": "Ermöglicht dem Beschenkten 1 Jahr lang den Eintritt in Museen per QR-Code über die Müzelerim-App.",
+    "c_hediye_exc": "Ausgenommen Harem des Topkapı-Palastes, Galataturm, Dunkle Kirche in Göreme und Dolmabahçe-Palast.",
 
     // Card 7: MuseumPass Türkiye
     "c_pass_tr_name": "MuseumPass Türkei",

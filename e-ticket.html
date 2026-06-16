@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="scroll-smooth" lang="tr">
 <head>
     <link rel="icon" type="image/png" href="assets/images/new_logo.png"/>
@@ -238,6 +238,8 @@
                                 <option value="pass_diplomat" data-price="60">MüzeKart Diplomat (₺60)</option>
                                 <option value="pass_disabled" data-price="0">Engelsiz MüzeKart (₺0)</option>
                                 <option value="pass_muzekart99" data-price="750">Mobil MüzeKart 99 (₺750)</option>
+                                <option value="pass_mobil" data-price="200">Mobil MüzeKart (₺200)</option>
+                                <option value="pass_hediye" data-price="200">Hediye Mobil MüzeKart (₺200)</option>
                             </select>
                         </div>
 
@@ -662,7 +664,14 @@
         const boxGuide = document.getElementById('type-box-guide');
 
         // Reset inputs disabled states & opacity
-        standardRadio.disabled         const isDomesticPass = ['pass_muzekart', 'pass_discounted', 'pass_academic', 'pass_disabled'].includes(itemId);
+        standardRadio.disabled = false;
+        citizenRadio.disabled = false;
+        guideRadio.disabled = false;
+        boxStandard.style.opacity = '1';
+        boxCitizen.style.opacity = '1';
+        boxGuide.style.opacity = '1';
+
+        const isDomesticPass = ['pass_muzekart', 'pass_discounted', 'pass_academic', 'pass_disabled', 'pass_mobil', 'pass_hediye'].includes(itemId);
         const isDiplomatPass = itemId === 'pass_diplomat';
         const isMuzekart99 = itemId === 'pass_muzekart99';
         const isMuseumPass = itemId.startsWith('pass_') && !isDomesticPass && !isDiplomatPass && !isMuzekart99;
@@ -908,7 +917,7 @@
         const visitorId = document.getElementById('visitor-id').value.trim();
         const lang = localStorage.getItem('preferred-language') || 'tr';
 
-        const isDomesticPass = ['pass_muzekart', 'pass_discounted', 'pass_academic', 'pass_disabled'].includes(checkoutItem);
+        const isDomesticPass = ['pass_muzekart', 'pass_discounted', 'pass_academic', 'pass_disabled', 'pass_mobil', 'pass_hediye'].includes(checkoutItem);
         const isDiplomatPass = checkoutItem === 'pass_diplomat';
         const isMuzekart99 = checkoutItem === 'pass_muzekart99';
 

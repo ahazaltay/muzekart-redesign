@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="scroll-smooth" lang="tr">
 <head>
     <link rel="icon" type="image/png" href="assets/images/new_logo.png"/>
@@ -472,6 +472,92 @@
                 </div>
             </div>
 
+            <!-- Card 12: Mobil MüzeKart (Citizen Segment) -->
+            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
+                <div class="space-y-5">
+                    <!-- 3D Card Graphic -->
+                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
+                        <img src="assets/images/muzekart_mobil.jpg" alt="Mobil MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_mobil_name">Mobil MüzeKart</h4>
+                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_mobil_desc">Müzelerim uygulaması üzerinden anında dijital olarak oluşturulup kullanılan yıllık kart.</p>
+                        
+                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_mobil_val">365 Gün (1 Yıl)</span></div>
+                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_mobil_price">200 TL</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 space-y-3">
+                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                        <span data-i18n="btn_details">DETAYLAR</span>
+                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                    </button>
+                    
+                    <div class="details-accordion">
+                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                            <div>
+                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                <p data-i18n="c_mobil_inc">300'den fazla devlet müzesi ve ören yerine QR kod ile sınırsız giriş.</p>
+                            </div>
+                            <div class="border-t border-stone-gray/5 pt-1.5">
+                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                <p data-i18n="c_mobil_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="e-ticket.html?pass=mobil" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
+                </div>
+            </div>
+
+            <!-- Card 13: Hediye Mobil MüzeKart (Citizen Segment) -->
+            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
+                <div class="space-y-5">
+                    <!-- 3D Card Graphic -->
+                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
+                        <img src="assets/images/muzekart_hediye.jpg" alt="Hediye Mobil MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_hediye_name">Hediye Mobil MüzeKart</h4>
+                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_hediye_desc">Sevdiklerinize hediye edebileceğiniz, Müzelerim uygulaması üzerinden aktif edilen dijital kart.</p>
+                        
+                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_hediye_val">365 Gün (1 Yıl)</span></div>
+                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_hediye_price">200 TL</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 space-y-3">
+                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                        <span data-i18n="btn_details">DETAYLAR</span>
+                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                    </button>
+                    
+                    <div class="details-accordion">
+                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                            <div>
+                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                <p data-i18n="c_hediye_inc">Hediye edilen kişinin Müzelerim uygulaması üzerinden 1 yıl boyunca müzelere QR kod ile girişini sağlar.</p>
+                            </div>
+                            <div class="border-t border-stone-gray/5 pt-1.5">
+                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                <p data-i18n="c_hediye_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="e-ticket.html?pass=hediye" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
+                </div>
+            </div>
+
             <!-- Card 4: MuseumPass Türkiye (Tourists) -->
             <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="foreign">
                 <div class="space-y-5">
@@ -749,6 +835,20 @@
                         <td class="p-4 md:p-5" data-i18n="c_muzekart99_price">750 TL</td>
                         <td class="p-4 md:p-5" data-i18n="c_muzekart99_val">365 Gün (1 Yıl)</td>
                         <td class="p-4 md:p-5" data-i18n="c_muzekart99_inc">İkamet sahipleri için 300'den fazla devlet müzesine 1 yıl boyunca giriş hakkı.</td>
+                        <td class="p-4 md:p-5 text-center"><span class="text-red-500 font-bold" data-i18n="comp_no">Hayır</span></td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 md:p-5 font-bold text-[#b45309]" data-i18n="c_mobil_name">Mobil MüzeKart</td>
+                        <td class="p-4 md:p-5" data-i18n="c_mobil_price">200 TL</td>
+                        <td class="p-4 md:p-5" data-i18n="c_mobil_val">365 Gün (1 Yıl)</td>
+                        <td class="p-4 md:p-5" data-i18n="c_mobil_inc">300'den fazla devlet müzesi ve ören yerine QR kod ile sınırsız giriş.</td>
+                        <td class="p-4 md:p-5 text-center"><span class="text-red-500 font-bold" data-i18n="comp_no">Hayır</span></td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 md:p-5 font-bold text-[#c2410c]" data-i18n="c_hediye_name">Hediye Mobil MüzeKart</td>
+                        <td class="p-4 md:p-5" data-i18n="c_hediye_price">200 TL</td>
+                        <td class="p-4 md:p-5" data-i18n="c_hediye_val">365 Gün (1 Yıl)</td>
+                        <td class="p-4 md:p-5" data-i18n="c_hediye_inc">Hediye edilen kişinin Müzelerim uygulaması üzerinden 1 yıl boyunca müzelere QR kod ile girişini sağlar.</td>
                         <td class="p-4 md:p-5 text-center"><span class="text-red-500 font-bold" data-i18n="comp_no">Hayır</span></td>
                     </tr>
                     <tr>
