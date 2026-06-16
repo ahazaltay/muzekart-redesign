@@ -310,7 +310,7 @@ const translations = {
     
     // New Dual-Card Hero Section
     "hero_tc_badge": "T.C. VATANDAŞLARI İÇİN",
-    "hero_tc_title": "MüzeKart+ ile Tarihe Sınırsız Yolculuk",
+    "hero_tc_title": "<span class=\"text-primary\">MüzeKart+</span> ile Tarihe Sınırsız Yolculuk",
     "hero_tc_desc": "T.C. Kültür ve Turizm Bakanlığı'na bağlı 300'den fazla müze ve ören yerini 1 yıl boyunca yıllık sadece ₺60'ye sınırsız keşfedin.",
     "hero_tc_btn_buy": "MüzeKart+ Satın Al",
     "hero_btn_details": "DETAYLI BİLGİ",
@@ -320,7 +320,7 @@ const translations = {
     "hero_tc_info_item3": "e-Devlet entegrasyonu sayesinde anında dijital kart oluşturulabilir.",
     "hero_tc_info_item4": "Özel alanlar (Harem Dairesi vb.) hariç Kültür Bakanlığı müzelerinde geçerlidir.",
     "hero_en_badge": "YABANCI ZİYARETÇİLER İÇİN",
-    "hero_en_title": "MuseumPass ile Türkiye'yi Keşfedin",
+    "hero_en_title": "<span class=\"text-primary\">MuseumPass</span> ile Türkiye'yi Keşfedin",
     "hero_en_desc": "Ayasofya, Efes, Pamukkale gibi dünyaca ünlü yerlerde sıra beklemeden geçin. 15 gün boyunca tarihi alanlara sınırsız erişim sağlayın.",
     "hero_en_btn_buy": "MuseumPass Al",
     "hero_btn_details_en": "PASAPORT BİLGİSİ",
@@ -669,7 +669,7 @@ const translations = {
     
     // New Dual-Card Hero Section
     "hero_tc_badge": "FOR T.C. CITIZENS",
-    "hero_tc_title": "Unlimited Heritage with MüzeKart+",
+    "hero_tc_title": "Unlimited Heritage with <span class=\"text-primary\">MüzeKart+</span>",
     "hero_tc_desc": "Explore over 300 state museums and archaeological sites under the Ministry of Culture for just ₺60 a year.",
     "hero_tc_btn_buy": "Buy MüzeKart+",
     "hero_btn_details": "DETAILS",
@@ -679,7 +679,7 @@ const translations = {
     "hero_tc_info_item3": "Generate your digital card instantly via e-Government integration.",
     "hero_tc_info_item4": "Valid in Ministry of Culture museums except for restricted sections (Harem etc.).",
     "hero_en_badge": "FOR INTERNATIONAL VISITORS",
-    "hero_en_title": "Explore Turkey with MuseumPass",
+    "hero_en_title": "Explore Turkey with <span class=\"text-primary\">MuseumPass</span>",
     "hero_en_desc": "Skip the ticket lines at Hagia Sophia, Ephesus, Pamukkale and more. Enjoy universal access across historical sites for 15 days.",
     "hero_en_btn_buy": "Get MuseumPass",
     "hero_btn_details_en": "PASSPORT INFO",
@@ -1028,7 +1028,7 @@ const translations = {
     
     // New Dual-Card Hero Section
     "hero_tc_badge": "FÜR TR-BÜRGER",
-    "hero_tc_title": "Unbegrenztes Erbe mit MüzeKart+",
+    "hero_tc_title": "Unbegrenztes Erbe mit <span class=\"text-primary\">MüzeKart+</span>",
     "hero_tc_desc": "Entdecken Sie über 300 staatliche Museen und Ruinen des Kulturministeriums für nur ₺60 im Jahr.",
     "hero_tc_btn_buy": "MüzeKart+ Kaufen",
     "hero_btn_details": "DETAILS",
@@ -1038,7 +1038,7 @@ const translations = {
     "hero_tc_info_item3": "Erstellen Sie Ihre digitale Karte sofort über e-Government.",
     "hero_tc_info_item4": "Gültig in Museen des Kulturministeriums, ausgenommen Sonderbereiche (Harem usw.).",
     "hero_en_badge": "FÜR AUSLÄNDISCHE BESUCHER",
-    "hero_en_title": "Türkei erkunden mit MuseumPass",
+    "hero_en_title": "Türkei erkunden mit <span class=\"text-primary\">MuseumPass</span>",
     "hero_en_desc": "Überspringen Sie die Warteschlangen bei der Hagia Sophia, Ephesus, Pamukkale und mehr. 15 Tage lang unbegrenzter Zugang.",
     "hero_en_btn_buy": "MuseumPass Kaufen",
     "hero_btn_details_en": "PASS-INFO",
@@ -1089,7 +1089,7 @@ function applyTranslations(lang) {
   elements.forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[lang] && translations[lang][key]) {
-      el.textContent = translations[lang][key];
+      el.innerHTML = translations[lang][key];
     }
   });
 
