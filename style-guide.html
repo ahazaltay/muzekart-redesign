@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="tr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>MüzeKart | Design System & Style Guide</title>
+    <script src="theme.js"></script>
+    <script src="translations.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="index.css"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed": "#001f27",
+                "surface-container": "#eeeeee",
+                "background": "var(--background-color)",
+                "surface-dim": "#dadada",
+                "inverse-surface": "#2f3131",
+                "paper-white": "var(--paper-white)",
+                "on-secondary-container": "#744000",
+                "on-tertiary": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-low": "#f3f3f3",
+                "on-background": "#1a1c1c",
+                "deep-charcoal": "var(--deep-charcoal)",
+                "secondary-fixed": "#ffdcc0",
+                "on-error": "#ffffff",
+                "on-surface": "#1a1c1c",
+                "secondary-fixed-dim": "#ffb877",
+                "surface-container-high": "#e8e8e8",
+                "outline": "#747878",
+                "on-tertiary-fixed-variant": "#004e5e",
+                "on-primary": "#ffffff",
+                "surface-variant": "#e2e2e2",
+                "on-error-container": "#93000a",
+                "elegant-gold": "var(--elegant-gold)",
+                "surface": "var(--background-color)",
+                "tertiary": "#000000",
+                "primary-fixed-dim": "#c8c6c5",
+                "secondary": "#8c4f05",
+                "primary": "var(--primary-color)",
+                "on-tertiary-container": "#0090ac",
+                "inverse-primary": "#c8c6c5",
+                "on-secondary": "#ffffff",
+                "tertiary-container": "#001f27",
+                "tertiary-fixed": "#b0ecff",
+                "surface-container-highest": "#e2e2e2",
+                "heritage-blue": "#00A4C3",
+                "on-primary-container": "#858383",
+                "secondary-container": "#feac60",
+                "on-surface-variant": "#444748",
+                "surface-tint": "#5f5e5e",
+                "primary-container": "#1c1b1b",
+                "outline-variant": "#c4c7c7",
+                "stone-gray": "var(--stone-gray)",
+                "error": "#ba1a1a",
+                "tertiary-fixed-dim": "#5cd5f6",
+                "surface-container-lowest": "#ffffff",
+                "inverse-on-surface": "#f1f1f1",
+                "on-primary-fixed": "#1c1b1b",
+                "on-secondary-fixed": "#2d1600",
+                "surface-bright": "#f9f9f9",
+                "on-secondary-fixed-variant": "#6b3b00",
+                "on-primary-fixed-variant": "#474746",
+                "primary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                "DEFAULT": "var(--border-radius-default)",
+                "lg": "var(--border-radius-lg)",
+                "xl": "var(--border-radius-xl)",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "24px",
+                "section-gap": "var(--section-gap)",
+                "container-max": "1280px",
+                "base": "8px",
+                "gutter": "32px",
+                "margin-desktop": "var(--margin-desktop)",
+                "desktop": "var(--margin-desktop)"
+            },
+            "fontFamily": {
+                "headline-md": ["var(--font-headline)"],
+                "headline-lg": ["var(--font-headline)"],
+                "body-lg": ["var(--font-body)"],
+                "headline-lg-mobile": ["var(--font-headline)"],
+                "label-caps": ["var(--font-body)"],
+                "button": ["var(--font-body)"],
+                "body-md": ["var(--font-body)"],
+                "display-lg": ["var(--font-headline)"]
+            },
+            "fontSize": {
+                "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                "headline-lg": ["var(--font-size-headline-lg)", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "body-md": ["var(--font-size-base)", {"lineHeight": "24px", "fontWeight": "400"}],
+                "display-lg": ["var(--font-size-display-lg)", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .card-hover-effect {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .config-input-color::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .config-input-color::-webkit-color-swatch {
+            border: 1px solid var(--stone-gray);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-elegant-gold selection:text-white">
+
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-paper-white dark:bg-deep-charcoal border-b border-stone-gray dark:border-on-surface-variant transition-all duration-300 h-20">
+    <nav class="flex justify-between items-center h-full px-desktop max-w-container-max mx-auto gap-4">
+        <div class="flex items-center gap-6 xl:gap-8 flex-shrink-0">
+            <a class="font-display-lg text-xl md:text-2xl tracking-tighter flex items-center gap-2 whitespace-nowrap" href="index.html">
+                <!-- SVG Logo: Black circle with white 'M' -->
+                <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" class="fill-black stroke-black dark:fill-none dark:stroke-white transition-all duration-300" stroke-width="6"/>
+                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
+                </svg>
+                <span><span class="text-primary">Müze</span><span class="text-deep-charcoal dark:text-white">Kart</span></span>
+            </a>
+            <div class="hidden lg:flex gap-4 xl:gap-5 items-center">
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="index.html" data-i18n="nav_home">Home</a>
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="about.html" data-i18n="nav_about">About</a>
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="museums.html" data-i18n="nav_museums">Museums</a>
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="night-museum.html" data-i18n="nav_night">Night Museum</a>
+                <a class="bg-primary text-white hover:bg-elegant-gold transition-colors font-body-md text-xs font-semibold px-3.5 py-1.5 rounded-full whitespace-nowrap ml-1" href="museumpass.html" data-i18n="nav_pass">MuseumPass</a>
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="e-ticket.html" data-i18n="nav_ticket">E-Ticket</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 xl:gap-6 flex-shrink-0">
+            <!-- Theme Toggle Button -->
+            <button onclick="V2Theme.toggleMode()" class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold p-2 transition-colors flex items-center justify-center" aria-label="Toggle Theme">
+                <span class="material-symbols-outlined theme-toggle-icon text-xl">dark_mode</span>
+            </button>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center gap-2 border-r border-stone-gray dark:border-on-surface-variant pr-4">
+                <button onclick="setLanguage('tr')" class="lang-btn text-xs font-semibold transition-colors hover:text-elegant-gold" data-lang="tr">TR</button>
+                <span class="text-stone-gray/30 text-xs">|</span>
+                <button onclick="setLanguage('en')" class="lang-btn text-xs font-semibold transition-colors hover:text-elegant-gold" data-lang="en">ENG</button>
+                <span class="text-stone-gray/30 text-xs">|</span>
+                <button onclick="setLanguage('de')" class="lang-btn text-xs font-semibold transition-colors hover:text-elegant-gold" data-lang="de">DE</button>
+            </div>
+            
+            <div class="hidden lg:flex items-center gap-1.5 font-semibold ml-4 xl:ml-6">
+                <div class="tooltip-container">
+                    <a href="login.html" class="text-elegant-gold hover:text-primary transition-colors p-2 flex items-center justify-center rounded-full hover:bg-stone-gray/10 dark:hover:bg-white/10" aria-label="Login">
+                        <!-- Simple Outline Key Icon -->
+                        <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4" />
+                            <line x1="12" y1="11" x2="12" y2="20" />
+                            <path d="M12 15h3" />
+                            <path d="M12 18h3" />
+                        </svg>
+                    </a>
+                    <span class="tooltip-text" data-i18n="btn_login">Giriş Yap</span>
+                </div>
+                <div class="tooltip-container">
+                    <a href="register.html" class="text-elegant-gold hover:text-primary transition-colors p-2 flex items-center justify-center rounded-full hover:bg-stone-gray/10 dark:hover:bg-white/10" aria-label="Register">
+                        <!-- Simple Outline User + Plus Icon -->
+                        <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="10" cy="8" r="4" />
+                            <path d="M3 20c0-3.5 3-6 7-6s7 2.5 7 6" />
+                            <line x1="19" y1="11" x2="19" y2="17" />
+                            <line x1="16" y1="14" x2="22" y2="14" />
+                        </svg>
+                    </a>
+                    <span class="tooltip-text" data-i18n="btn_register">Kayıt Ol</span>
+                </div>
+            </div>
+
+            <!-- Hamburger Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold focus:outline-none transition-colors p-2">
+                <span class="material-symbols-outlined text-[28px] !leading-none block">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-20 bg-paper-white dark:bg-deep-charcoal border-b border-stone-gray dark:border-on-surface-variant shadow-lg transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 z-40 flex flex-col p-6 gap-4">
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="index.html" data-i18n="nav_home">Home</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="about.html" data-i18n="nav_about">About</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="museums.html" data-i18n="nav_museums">Museums</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="night-museum.html" data-i18n="nav_night">Night Museum</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="museumpass.html" data-i18n="nav_pass">MuseumPass</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="e-ticket.html" data-i18n="nav_ticket">E-Ticket</a>
+        
+        <!-- Mobile Language Switcher -->
+        <div class="flex gap-4 py-2 border-b border-stone-gray/10">
+            <button onclick="setLanguage('tr')" class="lang-btn text-sm font-semibold flex-1 text-center py-1 border border-stone-gray/30" data-lang="tr">TR</button>
+            <button onclick="setLanguage('en')" class="lang-btn text-sm font-semibold flex-1 text-center py-1 border border-stone-gray/30" data-lang="en">ENG</button>
+            <button onclick="setLanguage('de')" class="lang-btn text-sm font-semibold flex-1 text-center py-1 border border-stone-gray/30" data-lang="de">DE</button>
+        </div>
+        
+        <div class="flex gap-4 mt-2">
+            <a href="login.html" class="flex-1 text-center py-2.5 border border-stone-gray font-button text-button text-on-surface" data-i18n="btn_login">Login</a>
+            <a href="register.html" class="flex-1 text-center bg-deep-charcoal text-white py-2.5 font-button text-button hover:bg-elegant-gold transition-all text-center" data-i18n="btn_register">Register</a>
+        </div>
+    </div>
+</header>
+
+<main class="pt-32 pb-section-gap">
+    <div class="px-desktop max-w-container-max mx-auto">
+        <!-- Page Title -->
+        <div class="mb-12 text-center lg:text-left">
+            <h1 class="font-headline-lg text-headline-lg text-deep-charcoal mb-4" data-i18n="sg_title">Design System & Style Guide</h1>
+            <p class="text-on-surface-variant font-body-lg" data-i18n="sg_subtitle">Customize color palettes, typography scale, spacings, and radii, with instant interactive preview.</p>
+        </div>
+
+        <!-- Split Pane Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Left Side: Configurator Panel (4 Cols) -->
+            <div class="lg:col-span-4 bg-paper-white border border-stone-gray p-6 rounded shadow-sm space-y-8 sticky top-28 max-h-[80vh] overflow-y-auto">
+                
+                <!-- Color Section -->
+                <div>
+                    <h3 class="font-label-caps text-on-surface-variant border-b border-stone-gray pb-3 mb-4 tracking-wider uppercase" data-i18n="sg_colors">Color Palette</h3>
+                    <div class="space-y-4">
+                        <!-- Primary Color -->
+                        <div class="flex items-center justify-between">
+                            <label class="font-body-md text-sm text-deep-charcoal">Primary Color</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="hex-primary" class="w-20 px-2 py-1 text-xs border border-stone-gray rounded focus:ring-0 focus:border-elegant-gold" value="#9C3D2D"/>
+                                <input type="color" id="color-primary" class="w-8 h-8 cursor-pointer bg-transparent border-0 outline-none p-0 config-input-color" value="#9C3D2D"/>
+                            </div>
+                        </div>
+                        <!-- Elegant Gold -->
+                        <div class="flex items-center justify-between">
+                            <label class="font-body-md text-sm text-deep-charcoal">Accent / Gold</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="hex-gold" class="w-20 px-2 py-1 text-xs border border-stone-gray rounded focus:ring-0 focus:border-elegant-gold" value="#00adc6"/>
+                                <input type="color" id="color-gold" class="w-8 h-8 cursor-pointer bg-transparent border-0 outline-none p-0 config-input-color" value="#00adc6"/>
+                            </div>
+                        </div>
+                        <!-- Deep Charcoal -->
+                        <div class="flex items-center justify-between">
+                            <label class="font-body-md text-sm text-deep-charcoal">Deep Charcoal</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="hex-charcoal" class="w-20 px-2 py-1 text-xs border border-stone-gray rounded focus:ring-0 focus:border-elegant-gold" value="#1E2022"/>
+                                <input type="color" id="color-charcoal" class="w-8 h-8 cursor-pointer bg-transparent border-0 outline-none p-0 config-input-color" value="#1E2022"/>
+                            </div>
+                        </div>
+                        <!-- Background Color -->
+                        <div class="flex items-center justify-between">
+                            <label class="font-body-md text-sm text-deep-charcoal">Background</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="hex-bg" class="w-20 px-2 py-1 text-xs border border-stone-gray rounded focus:ring-0 focus:border-elegant-gold" value="#FBF9F6"/>
+                                <input type="color" id="color-bg" class="w-8 h-8 cursor-pointer bg-transparent border-0 outline-none p-0 config-input-color" value="#FBF9F6"/>
+                            </div>
+                        </div>
+                        <!-- Paper White -->
+                        <div class="flex items-center justify-between">
+                            <label class="font-body-md text-sm text-deep-charcoal">Paper White</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="hex-white" class="w-20 px-2 py-1 text-xs border border-stone-gray rounded focus:ring-0 focus:border-elegant-gold" value="#FFFFFF"/>
+                                <input type="color" id="color-white" class="w-8 h-8 cursor-pointer bg-transparent border-0 outline-none p-0 config-input-color" value="#FFFFFF"/>
+                            </div>
+                        </div>
+                        <!-- Stone Gray -->
+                        <div class="flex items-center justify-between">
+                            <label class="font-body-md text-sm text-deep-charcoal">Stone Gray</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="hex-gray" class="w-20 px-2 py-1 text-xs border border-stone-gray rounded focus:ring-0 focus:border-elegant-gold" value="#E6DFD5"/>
+                                <input type="color" id="color-gray" class="w-8 h-8 cursor-pointer bg-transparent border-0 outline-none p-0 config-input-color" value="#E6DFD5"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spacing Section -->
+                <div>
+                    <h3 class="font-label-caps text-on-surface-variant border-b border-stone-gray pb-3 mb-4 tracking-wider uppercase" data-i18n="sg_spacing">Spacing</h3>
+                    <div class="space-y-6">
+                        <!-- Desktop Margins -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm font-body-md text-deep-charcoal">
+                                <span>Desktop Margins</span>
+                                <span id="val-margin" class="font-semibold text-elegant-gold">64px</span>
+                            </div>
+                            <input type="range" id="slider-margin" min="16" max="96" step="8" class="w-full accent-elegant-gold cursor-pointer" value="64"/>
+                        </div>
+                        <!-- Section Gap -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm font-body-md text-deep-charcoal">
+                                <span>Section Gap</span>
+                                <span id="val-gap" class="font-semibold text-elegant-gold">120px</span>
+                            </div>
+                            <input type="range" id="slider-gap" min="40" max="160" step="10" class="w-full accent-elegant-gold cursor-pointer" value="120"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Border Radii Section -->
+                <div>
+                    <h3 class="font-label-caps text-on-surface-variant border-b border-stone-gray pb-3 mb-4 tracking-wider uppercase" data-i18n="sg_radii">Border Radii</h3>
+                    <div class="space-y-6">
+                        <!-- Default Radius -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm font-body-md text-deep-charcoal">
+                                <span>Default Radius</span>
+                                <span id="val-radius-default" class="font-semibold text-elegant-gold">4px</span>
+                            </div>
+                            <input type="range" id="slider-radius-default" min="0" max="20" step="2" class="w-full accent-elegant-gold cursor-pointer" value="4"/>
+                        </div>
+                        <!-- Large Radius -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm font-body-md text-deep-charcoal">
+                                <span>Large Radius</span>
+                                <span id="val-radius-lg" class="font-semibold text-elegant-gold">8px</span>
+                            </div>
+                            <input type="range" id="slider-radius-lg" min="0" max="40" step="2" class="w-full accent-elegant-gold cursor-pointer" value="8"/>
+                        </div>
+                        <!-- Extra Large Radius -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm font-body-md text-deep-charcoal">
+                                <span>Extra Large Radius</span>
+                                <span id="val-radius-xl" class="font-semibold text-elegant-gold">12px</span>
+                            </div>
+                            <input type="range" id="slider-radius-xl" min="0" max="60" step="2" class="w-full accent-elegant-gold cursor-pointer" value="12"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typography Scale Configurator -->
+                <div>
+                    <h3 class="font-label-caps text-on-surface-variant border-b border-stone-gray pb-3 mb-4 tracking-wider uppercase" data-i18n="sg_typo">Typography Settings</h3>
+                    <div class="space-y-4">
+                        <!-- Headline Family -->
+                        <div class="space-y-1">
+                            <label class="font-body-md text-sm text-deep-charcoal block">Headline Font Family</label>
+                            <select id="select-font-headline" class="w-full bg-white border border-stone-gray rounded px-3 py-2 text-xs focus:ring-0 focus:border-elegant-gold cursor-pointer">
+                                <option value="Playfair Display">Playfair Display (Default Serif)</option>
+                                <option value="Lora">Lora (Elegant Editorial Serif)</option>
+                                <option value="Cinzel" selected>Cinzel (Classic Heritage Serif)</option>
+                                <option value="Georgia">Georgia (Standard Editorial Serif)</option>
+                                <option value="Outfit">Outfit (Modern Tech Sans)</option>
+                                <option value="Inter">Inter (Clean System Sans)</option>
+                            </select>
+                        </div>
+                        <!-- Body Family -->
+                        <div class="space-y-1">
+                            <label class="font-body-md text-sm text-deep-charcoal block">Body Font Family</label>
+                            <select id="select-font-body" class="w-full bg-white border border-stone-gray rounded px-3 py-2 text-xs focus:ring-0 focus:border-elegant-gold cursor-pointer">
+                                <option value="Inter">Inter (Default Geometric Sans)</option>
+                                <option value="Roboto">Roboto (Clean Neutral Sans)</option>
+                                <option value="Montserrat">Montserrat (Architectural Sans)</option>
+                                <option value="Outfit">Outfit (Modern Clean Sans)</option>
+                                <option value="Georgia">Georgia (Traditional Serif)</option>
+                            </select>
+                        </div>
+                        <!-- Base Font Size -->
+                        <div class="space-y-2 pt-2">
+                            <div class="flex justify-between text-xs font-body-md text-deep-charcoal">
+                                <span>Base Body Text Size</span>
+                                <span id="val-font-base" class="font-semibold text-elegant-gold">16px</span>
+                            </div>
+                            <input type="range" id="slider-font-base" min="12" max="22" step="1" class="w-full accent-elegant-gold cursor-pointer" value="16"/>
+                        </div>
+                        <!-- Headline Scale Size -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-body-md text-deep-charcoal">
+                                <span>Headline Large Size</span>
+                                <span id="val-font-headline-lg" class="font-semibold text-elegant-gold">40px</span>
+                            </div>
+                            <input type="range" id="slider-font-headline-lg" min="24" max="64" step="2" class="w-full accent-elegant-gold cursor-pointer" value="40"/>
+                        </div>
+                        <!-- Display Large Size -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs font-body-md text-deep-charcoal">
+                                <span>Hero Display Size</span>
+                                <span id="val-font-display-lg" class="font-semibold text-elegant-gold">64px</span>
+                            </div>
+                            <input type="range" id="slider-font-display-lg" min="36" max="96" step="4" class="w-full accent-elegant-gold cursor-pointer" value="64"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <button id="btn-reset" class="w-full border border-stone-gray hover:border-red-600 hover:text-red-600 font-button uppercase py-3 transition-colors text-sm" data-i18n="sg_reset">Reset to Defaults</button>
+            </div>
+            
+            <!-- Right Side: Component Playground (8 Cols) -->
+            <div class="lg:col-span-8 space-y-12">
+                
+                <!-- Preview Section Card -->
+                <div class="bg-paper-white border border-stone-gray rounded p-8 space-y-8 shadow-sm">
+                    <h2 class="font-headline-md text-headline-md border-b border-stone-gray pb-4 text-deep-charcoal" data-i18n="sg_preview">Interactive Previews</h2>
+                    
+                    <!-- Spacing Visualization Indicator -->
+                    <div class="space-y-2">
+                        <span class="font-label-caps text-xs text-on-surface-variant block tracking-wider uppercase">Active Spacing (desktop margin) visual helper</span>
+                        <div class="bg-stone-gray/10 border border-dashed border-stone-gray p-4 flex gap-4 items-center overflow-hidden">
+                            <div class="h-10 bg-elegant-gold/15 rounded flex items-center justify-center font-semibold text-xs text-elegant-gold select-none whitespace-nowrap transition-all" style="width: var(--margin-desktop)">
+                                margin
+                            </div>
+                            <div class="flex-1 bg-deep-charcoal/5 h-10 border border-stone-gray rounded flex items-center justify-center text-xs text-on-surface-variant">
+                                Content Container Area (updates with margin size)
+                            </div>
+                            <div class="h-10 bg-elegant-gold/15 rounded flex items-center justify-center font-semibold text-xs text-elegant-gold select-none whitespace-nowrap transition-all" style="width: var(--margin-desktop)">
+                                margin
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typography Scale Preview -->
+                    <div class="space-y-6">
+                        <span class="font-label-caps text-xs text-on-surface-variant block border-b border-stone-gray/50 pb-2 tracking-wider uppercase">Typography Scales</span>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <span class="text-[10px] text-stone-gray/80 font-bold block uppercase mb-1">Display Lg (Hero Display Text)</span>
+                                <h1 class="font-display-lg text-display-lg leading-tight text-primary">Explore Turkey's Heritage</h1>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-stone-gray/80 font-bold block uppercase mb-1">Headline Lg (Primary Page Titles)</span>
+                                <h2 class="font-headline-lg text-headline-lg text-deep-charcoal">タイムレス・ヘリテージ</h2>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-stone-gray/80 font-bold block uppercase mb-1">Headline Md (Section Subtitles)</span>
+                                <h3 class="font-headline-md text-headline-md text-deep-charcoal">Featured Collections</h3>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-stone-gray/80 font-bold block uppercase mb-1">Body Lg (Editorial Intros)</span>
+                                <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                                    Step into the halls of history and discover the monumental archives from prehistoric Gobeklitepe up to the magnificent Roman Empire.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-stone-gray/80 font-bold block uppercase mb-1">Body Md (Standard Paragraphs)</span>
+                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                    The official web portal for Turkey's national museums. Preserving heritage, encouraging interactive cultural research, and providing seamless access to ticket reservations.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-stone-gray/80 font-bold block uppercase mb-1">Label Caps (Metadata & Taglines)</span>
+                                <span class="font-label-caps text-label-caps text-elegant-gold tracking-[0.2em] uppercase block">ARCHAEOLOGICAL SITE • CURATED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Buttons Scale -->
+                    <div class="space-y-6">
+                        <span class="font-label-caps text-xs text-on-surface-variant block border-b border-stone-gray/50 pb-2 tracking-wider uppercase">Interactive Buttons & Actions</span>
+                        
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <!-- Primary button -->
+                            <button class="bg-deep-charcoal text-white px-8 py-3 rounded hover:bg-elegant-gold transition-colors font-button text-button uppercase tracking-wider">Primary Button</button>
+                            
+                            <!-- Outline button -->
+                            <button class="border border-deep-charcoal hover:border-elegant-gold text-deep-charcoal hover:text-elegant-gold px-8 py-3 rounded transition-colors font-button text-button uppercase tracking-wider">Outline Button</button>
+                            
+                            <!-- Interactive link button with icon -->
+                            <button class="text-elegant-gold hover:text-deep-charcoal transition-colors font-button text-button uppercase tracking-wider flex items-center gap-2">
+                                Link Button <span class="material-symbols-outlined !leading-none text-base">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Component Preview: Curated Museum Card -->
+                    <div class="space-y-6">
+                        <span class="font-label-caps text-xs text-on-surface-variant block border-b border-stone-gray/50 pb-2 tracking-wider uppercase">Museum Card Component</span>
+                        
+                        <div class="max-w-md bg-white border border-stone-gray rounded card-hover-effect overflow-hidden group flex flex-col h-full">
+                            <div class="aspect-[1.6/1] overflow-hidden relative bg-stone-gray">
+                                <img alt="Istanbul Archaeological Museum Preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale-[10%]" src="https://lh3.googleusercontent.com/aida/AP1WRLvZxOOOQ6_qpbtNZr-lXTjzXUZbqN35d90EmyyeRNjfmjKGik7EuIrDMyi9Ru-hD9IaKUZv2I4ii4rRNMTwXCdCLACFhlz41zeFmOuF6Ljj8HnzLbgclt4ZrDCfyCtmjQABmwVqRTChCftrRWrtHqknd5dRiGcOEk2w2pXRlp-vGi3fSF9S5Pi5qpM7D1xPi_8u4_NWFboS06b_gSZPf5sKGfflNZl4htjNR9Za89AssYQO1Xhgf3YDSIY"/>
+                                <div class="absolute top-4 left-4 bg-paper-white/90 backdrop-blur px-3 py-1 text-[10px] font-label-caps text-elegant-gold">ISTANBUL</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <h3 class="font-headline-md text-headline-md mb-2 text-deep-charcoal leading-tight">ISTANBUL ARCHAEOLOGICAL MUSEUMS</h3>
+                                <p class="text-on-surface-variant mb-6 text-sm leading-relaxed">
+                                    A grand architectural complex of three units housing millions of world-class antiquities.
+                                </p>
+                                <div class="flex gap-4 pt-4 border-t border-stone-gray mt-auto">
+                                    <button class="flex-1 bg-deep-charcoal text-white py-2.5 rounded font-button text-xs uppercase hover:bg-elegant-gold transition-colors">Buy Ticket</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Checkout Input Form -->
+                    <div class="space-y-6">
+                        <span class="font-label-caps text-xs text-on-surface-variant block border-b border-stone-gray/50 pb-2 tracking-wider uppercase">Interactive Input Forms</span>
+                        
+                        <div class="max-w-md space-y-4">
+                            <div class="space-y-1">
+                                <label class="font-label-caps text-xs text-on-surface-variant">FULL NAME</label>
+                                <input class="w-full border-b border-stone-gray border-t-0 border-l-0 border-r-0 px-0 py-2.5 font-body-md text-sm focus:border-elegant-gold focus:ring-0" placeholder="John Doe" type="text"/>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="font-label-caps text-xs text-on-surface-variant">EMAIL ADDRESS</label>
+                                <input class="w-full border-b border-stone-gray border-t-0 border-l-0 border-r-0 px-0 py-2.5 font-body-md text-sm focus:border-elegant-gold focus:ring-0" placeholder="john@example.com" type="email"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Export Settings Card -->
+                <div class="bg-paper-white border border-stone-gray rounded p-8 space-y-8 shadow-sm">
+                    <div>
+                        <h2 class="font-headline-md text-headline-md text-deep-charcoal mb-2" data-i18n="sg_export">Export Settings</h2>
+                        <p class="text-on-surface-variant text-sm" data-i18n="sg_export_desc">Copy the CSS variables or Tailwind configurations below to integrate changes into your code base permanently.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- CSS Variables Export -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="font-label-caps text-xs text-on-surface-variant block tracking-wider uppercase">CSS Variables (:root)</span>
+                                <button onclick="copyCode('export-css')" class="text-xs text-elegant-gold font-semibold flex items-center gap-1 hover:text-deep-charcoal transition-colors">
+                                    <span class="material-symbols-outlined text-sm">content_copy</span> COPY CSS
+                                </button>
+                            </div>
+                            <textarea id="export-css" readonly rows="8" class="w-full font-mono text-xs bg-background p-4 border border-stone-gray rounded focus:ring-0 focus:border-stone-gray leading-relaxed text-on-surface-variant"></textarea>
+                        </div>
+
+                        <!-- Tailwind Export -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="font-label-caps text-xs text-on-surface-variant block tracking-wider uppercase">Tailwind Config Extend Block</span>
+                                <button onclick="copyCode('export-tailwind')" class="text-xs text-elegant-gold font-semibold flex items-center gap-1 hover:text-deep-charcoal transition-colors">
+                                    <span class="material-symbols-outlined text-sm">content_copy</span> COPY TAILWIND OBJECT
+                                </button>
+                            </div>
+                            <textarea id="export-tailwind" readonly rows="12" class="w-full font-mono text-xs bg-background p-4 border border-stone-gray rounded focus:ring-0 focus:border-stone-gray leading-relaxed text-on-surface-variant"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer class="bg-deep-charcoal dark:bg-black border-t border-stone-gray/10 text-white pt-20 pb-12 w-full">
+    <div class="container space-y-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+            
+            <!-- Column 1: Brand Info & Social Media -->
+            <div class="space-y-6">
+                <a class="font-display-lg text-3xl tracking-tighter flex items-center gap-2" href="index.html">
+                    <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" class="fill-black stroke-black dark:fill-none dark:stroke-white transition-all duration-300" stroke-width="6"/>
+                        <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
+                    </svg>
+                    <span><span class="text-primary">Müze</span><span class="text-white">Kart</span></span>
+                </a>
+                <p class="font-body-md text-stone-gray max-w-sm text-sm" data-i18n="footer_desc">Türkiye müzelerinin resmi portalı. Geçmişi koruyor, geleceğe ilham veriyoruz. Bin yıllık mirası kutlamak için bize katılın.</p>
+                
+                <!-- Social Media (3 Icons) -->
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Facebook">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Twitter">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Instagram">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Column 2: Discovery -->
+            <div>
+                <h5 class="text-elegant-gold font-label-caps text-label-caps uppercase mb-8" data-i18n="footer_col_discovery">Discovery</h5>
+                <ul class="space-y-4 font-body-md text-stone-gray text-sm">
+                    <li><a class="hover:text-white transition-colors" href="museums.html" data-i18n="footer_map">Map of Museums</a></li>
+                    <li><a class="hover:text-white transition-colors" href="museums.html" data-i18n="footer_routes">Cultural Routes</a></li>
+                    <li><a class="hover:text-white transition-colors" href="night-museum.html" data-i18n="footer_tours">Virtual Tours</a></li>
+                    <li><a class="hover:text-white transition-colors" href="about.html" data-i18n="footer_finds">Latest Finds</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Corporate Links from Muze.gov.tr -->
+            <div>
+                <h5 class="text-elegant-gold font-label-caps text-label-caps uppercase mb-8" data-i18n="footer_col_corporate">Corporate</h5>
+                <ul class="space-y-4 font-body-md text-stone-gray text-sm">
+                    <li><a class="hover:text-white transition-colors" href="about.html#contact-section" data-i18n="footer_contact">İletişim</a></li>
+                    <li><a class="hover:text-white transition-colors" href="https://muze.gov.tr/document/bakanlik_yonergesi_tr.pdf" target="_blank" rel="noreferrer noopener" data-i18n="footer_directive">Bakanlık Yönergesi</a></li>
+                    <li>
+                        <a class="hover:text-white transition-colors flex items-center gap-1.5" href="https://muze.gov.tr/document/e-devlet_bilgilendirme.pdf" target="_blank" rel="noreferrer noopener">
+                            <span data-i18n="footer_edevlet">e-Devlet Hizmet Kılavuzu</span>
+                        </a>
+                    </li>
+                    <li><a class="hover:text-white transition-colors" href="https://acente.muze.gov.tr" target="_blank" rel="noreferrer noopener" data-i18n="footer_b2b">Kurumsal Satış</a></li>
+                    <li><a class="hover:text-white transition-colors" href="https://muze.gov.tr/kisisel-verilerin-islenmesi" target="_blank" rel="noreferrer noopener" data-i18n="footer_privacy">Ki̇şi̇sel Veri̇leri̇n İşlenmesi̇</a></li>
+                    <li><a class="hover:text-white transition-colors" href="https://muze.gov.tr/cerezpolitikasi" target="_blank" rel="noreferrer noopener" data-i18n="footer_cookies">Çerez Poli̇ti̇kası</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <!-- Institutional Partners Row -->
+        <div class="flex justify-center sm:justify-start items-center opacity-65 hover:opacity-100 transition-opacity duration-300">
+            <div class="flex flex-wrap gap-8 items-center justify-center">
+                <a href="https://goturkey.com/" target="_blank" rel="noreferrer noopener" class="transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://muze.gov.tr/img/turkiye-logo.png" alt="Türkiye" class="h-8 object-contain brightness-0 invert">
+                </a>
+                <a href="http://www.kultur.gov.tr/" target="_blank" rel="noreferrer noopener" class="transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://muze.gov.tr/img/bakanlik-logo.png" alt="T.C. Kültür ve Turizm Bakanlığı" class="h-12 object-contain brightness-0 invert">
+                </a>
+                <a href="http://www.dosimm.gov.tr/" target="_blank" rel="noreferrer noopener" class="transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://muze.gov.tr/img/dosimm-logo.png" alt="DÖSİMM" class="h-6 object-contain brightness-0 invert">
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Row: Copyright & Official Domain Links -->
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+            <p class="text-stone-gray/50 font-body-md text-xs text-center md:text-left" data-i18n="footer_copyright">© 2024 Republic of Türkiye Ministry of Culture and Tourism. All rights reserved.</p>
+            <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-stone-gray/40">
+                <a href="http://www.kulturturizm.gov.tr" target="_blank" rel="noreferrer noopener" class="hover:text-elegant-gold transition-colors">kulturturizm.gov.tr</a>
+                <a href="http://www.dosim.gov.tr" target="_blank" rel="noreferrer noopener" class="hover:text-elegant-gold transition-colors">dosim.gov.tr</a>
+                <a href="https://www.goturkey.com" target="_blank" rel="noreferrer noopener" class="hover:text-elegant-gold transition-colors">goturkey.com</a>
+                <span class="text-stone-gray/20 hidden sm:inline">|</span>
+                <div class="flex gap-4">
+                    <span onclick="setLanguage('tr')" class="text-stone-gray/60 cursor-pointer hover:text-white transition-colors">TR</span>
+                    <span onclick="setLanguage('en')" class="text-stone-gray/60 cursor-pointer hover:text-white transition-colors">EN</span>
+                    <span onclick="setLanguage('de')" class="text-stone-gray/60 cursor-pointer hover:text-white transition-colors">DE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Header Scroll Effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('shadow-md', 'h-16');
+            header.classList.remove('h-20');
+        } else {
+            header.classList.remove('shadow-md', 'h-16');
+            header.classList.add('h-20');
+        }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('pointer-events-none');
+            if (isHidden) {
+                mobileMenu.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+                mobileMenuBtn.querySelector('span').textContent = 'close';
+            } else {
+                mobileMenu.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
+                mobileMenuBtn.querySelector('span').textContent = 'menu';
+            }
+        });
+    }
+
+    // Configurator Logic
+    const themeKeys = window.V2Theme.defaultKeys;
+    const configMappings = {
+        '--primary-color': { control: 'color-primary', hexControl: 'hex-primary', type: 'color' },
+        '--elegant-gold': { control: 'color-gold', hexControl: 'hex-gold', type: 'color' },
+        '--deep-charcoal': { control: 'color-charcoal', hexControl: 'hex-charcoal', type: 'color' },
+        '--background-color': { control: 'color-bg', hexControl: 'hex-bg', type: 'color' },
+        '--paper-white': { control: 'color-white', hexControl: 'hex-white', type: 'color' },
+        '--stone-gray': { control: 'color-gray', hexControl: 'hex-gray', type: 'color' },
+        
+        '--margin-desktop': { control: 'slider-margin', display: 'val-margin', type: 'pixel', default: '64px' },
+        '--section-gap': { control: 'slider-gap', display: 'val-gap', type: 'pixel', default: '120px' },
+        
+        '--border-radius-default': { control: 'slider-radius-default', display: 'val-radius-default', type: 'pixel', default: '4px' },
+        '--border-radius-lg': { control: 'slider-radius-lg', display: 'val-radius-lg', type: 'pixel', default: '8px' },
+        '--border-radius-xl': { control: 'slider-radius-xl', display: 'val-radius-xl', type: 'pixel', default: '12px' },
+        
+        '--font-headline': { control: 'select-font-headline', type: 'font' },
+        '--font-body': { control: 'select-font-body', type: 'font' },
+        
+        '--font-size-base': { control: 'slider-font-base', display: 'val-font-base', type: 'pixel', default: '16px' },
+        '--font-size-headline-lg': { control: 'slider-font-headline-lg', display: 'val-font-headline-lg', type: 'pixel', default: '40px' },
+        '--font-size-display-lg': { control: 'slider-font-display-lg', display: 'val-font-display-lg', type: 'pixel', default: '64px' }
+    };
+
+    // Load values on load and set up event listeners
+    function initConfigurator() {
+        const root = document.documentElement;
+
+        for (const [cssVar, config] of Object.entries(configMappings)) {
+            const inputEl = document.getElementById(config.control);
+            const savedValue = localStorage.getItem(`theme-${cssVar}`);
+            const defaultValue = themeKeys[cssVar];
+            const activeValue = savedValue || defaultValue;
+
+            // Initialize controls
+            if (config.type === 'color') {
+                const hexEl = document.getElementById(config.hexControl);
+                inputEl.value = activeValue;
+                hexEl.value = activeValue.toUpperCase();
+
+                // Listen to color changes
+                inputEl.addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    hexEl.value = val.toUpperCase();
+                    updateThemeVariable(cssVar, val);
+                });
+                hexEl.addEventListener('change', (e) => {
+                    let val = e.target.value.trim();
+                    if (!val.startsWith('#')) val = '#' + val;
+                    if (/^#[0-9A-F]{6}$/i.test(val)) {
+                        inputEl.value = val;
+                        updateThemeVariable(cssVar, val);
+                    } else {
+                        hexEl.value = inputEl.value.toUpperCase();
+                    }
+                });
+            } else if (config.type === 'pixel') {
+                const numVal = parseInt(activeValue);
+                inputEl.value = numVal;
+                document.getElementById(config.display).textContent = `${numVal}px`;
+
+                // Listen to slider changes
+                inputEl.addEventListener('input', (e) => {
+                    const val = `${e.target.value}px`;
+                    document.getElementById(config.display).textContent = val;
+                    updateThemeVariable(cssVar, val);
+                });
+            } else if (config.type === 'font') {
+                inputEl.value = activeValue;
+                inputEl.addEventListener('change', (e) => {
+                    const val = e.target.value;
+                    updateThemeVariable(cssVar, val);
+                });
+            }
+        }
+
+        // Initial generation of code exports
+        generateExports();
+    }
+
+    function updateThemeVariable(cssVar, val) {
+        document.documentElement.style.setProperty(cssVar, val);
+        localStorage.setItem(`theme-${cssVar}`, val);
+        
+        // Dynamically load Google Fonts if we are editing a font family
+        if (cssVar === '--font-headline' || cssVar === '--font-body') {
+            loadGoogleFont(val);
+        }
+        
+        generateExports();
+    }
+
+    function generateExports() {
+        const root = document.documentElement;
+        let cssBlock = `:root {\n`;
+        let tailwindConfig = `tailwind.config = {\n  theme: {\n    extend: {\n      colors: {\n`;
+
+        // Get actual values from inline style properties or local storage or defaults
+        const values = {};
+        for (const [cssVar, config] of Object.entries(configMappings)) {
+            const defaultValue = themeKeys[cssVar];
+            const activeValue = localStorage.getItem(`theme-${cssVar}`) || defaultValue;
+            values[cssVar] = activeValue;
+            cssBlock += `  ${cssVar}: ${activeValue};\n`;
+        }
+        cssBlock += `}`;
+
+        // Build tailwind config block string matching active settings
+        tailwindConfig += `        "primary": "var(--primary-color)",\n`;
+        tailwindConfig += `        "elegant-gold": "var(--elegant-gold)",\n`;
+        tailwindConfig += `        "deep-charcoal": "var(--deep-charcoal)",\n`;
+        tailwindConfig += `        "background": "var(--background-color)",\n`;
+        tailwindConfig += `        "paper-white": "var(--paper-white)",\n`;
+        tailwindConfig += `        "stone-gray": "var(--stone-gray)",\n`;
+        tailwindConfig += `        "surface": "var(--background-color)"\n`;
+        tailwindConfig += `      },\n      borderRadius: {\n`;
+        tailwindConfig += `        "DEFAULT": "var(--border-radius-default)",\n`;
+        tailwindConfig += `        "lg": "var(--border-radius-lg)",\n`;
+        tailwindConfig += `        "xl": "var(--border-radius-xl)",\n`;
+        tailwindConfig += `        "full": "9999px"\n`;
+        tailwindConfig += `      },\n      spacing: {\n`;
+        tailwindConfig += `        "margin-desktop": "var(--margin-desktop)",\n`;
+        tailwindConfig += `        "desktop": "var(--margin-desktop)",\n`;
+        tailwindConfig += `        "section-gap": "var(--section-gap)"\n`;
+        tailwindConfig += `      },\n      fontFamily: {\n`;
+        tailwindConfig += `        "headline-md": ["var(--font-headline)"],\n`;
+        tailwindConfig += `        "headline-lg": ["var(--font-headline)"],\n`;
+        tailwindConfig += `        "body-lg": ["var(--font-body)"],\n`;
+        tailwindConfig += `        "headline-lg-mobile": ["var(--font-headline)"],\n`;
+        tailwindConfig += `        "label-caps": ["var(--font-body)"],\n`;
+        tailwindConfig += `        "button": ["var(--font-body)"],\n`;
+        tailwindConfig += `        "body-md": ["var(--font-body)"],\n`;
+        tailwindConfig += `        "display-lg": ["var(--font-headline)"]\n`;
+        tailwindConfig += `      },\n      fontSize: {\n`;
+        tailwindConfig += `        "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],\n`;
+        tailwindConfig += `        "headline-lg": ["var(--font-size-headline-lg)", {"lineHeight": "1.2", "fontWeight": "600"}],\n`;
+        tailwindConfig += `        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],\n`;
+        tailwindConfig += `        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],\n`;
+        tailwindConfig += `        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],\n`;
+        tailwindConfig += `        "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],\n`;
+        tailwindConfig += `        "body-md": ["var(--font-size-base)", {"lineHeight": "24px", "fontWeight": "400"}],\n`;
+        tailwindConfig += `        "display-lg": ["var(--font-size-display-lg)", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]\n`;
+        tailwindConfig += `      }\n    }\n  }\n};`;
+
+        document.getElementById('export-css').value = cssBlock;
+        document.getElementById('export-tailwind').value = tailwindConfig;
+    }
+
+    // Copy to clipboard
+    function copyCode(id) {
+        const text = document.getElementById(id).value;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Copied to clipboard!");
+        });
+    }
+
+    // Reset to defaults action
+    document.getElementById('btn-reset').addEventListener('click', () => {
+        if (confirm("Reset all style customizations?")) {
+            for (const cssVar of Object.keys(configMappings)) {
+                localStorage.removeItem(`theme-${cssVar}`);
+                document.documentElement.style.removeProperty(cssVar);
+            }
+            
+            // Reload page to re-initialize and apply active defaults
+            window.location.reload();
+        }
+    });
+
+    // Run on startup
+    initConfigurator();
+</script>
+
+</body>
+</html>

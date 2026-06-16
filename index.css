@@ -1,0 +1,849 @@
+/* 
+ * V2 Design System - Müzekart Web Portal
+ * Theme: Modern Heritage (Classic Editorial & Premium Minimalist)
+ */
+
+:root {
+  /* Colors - Light Theme (Default: Kum Beji Background) */
+  --surface: #FBF9F6;                 /* Kum Beji */
+  --surface-dim: #E6DFD5;             /* Warm Stone Gray */
+  --surface-bright: #FBF9F6;
+  --surface-container-lowest: #FFFFFF; /* Temiz Beyaz */
+  --surface-container-low: #F7F4EF;
+  --surface-container: #F0EAE1;
+  --surface-container-high: #E8E0D5;
+  --surface-container-highest: #DFD6C9;
+  --on-surface: #1E2022;              /* Derin Kömür */
+  --on-surface-variant: #4A4D50;
+  --inverse-surface: #FBF9F6;
+  --inverse-on-surface: #1E2022;
+  --outline: #8A8D90;
+  --outline-variant: #C9C6C1;
+  --surface-tint: #9C3D2D;
+
+  /* Brand core colors */
+  --primary-color: #9C3D2D;           /* Anatolian Terracotta Red */
+  --on-primary: #FFFFFF;
+  --primary-container: #F7EAE8;
+  --on-primary-container: #5C1D13;
+
+  --elegant-gold: #00adc6;            /* Heritage Accent Blue (Onaylanan Mavi) */
+  --on-secondary: #FFFFFF;
+  --secondary-container: #FAF2E8;
+  --on-secondary-container: #755B37;
+
+  --tertiary: #00A4C3;                /* Heritage Accent Blue */
+  --on-tertiary: #FFFFFF;
+  
+  --error: #BA1A1A;
+  --on-error: #FFFFFF;
+  --error-container: #FFDAD6;
+  --on-error-container: #93000A;
+
+  /* Specific Design Palette Tokens */
+  --deep-charcoal: #1E2022;
+  --stone-gray: #E6DFD5;
+  --paper-white: #FFFFFF;
+  --heritage-blue: #00A4C3;
+  --background-color: #FBF9F6;
+
+  /* Compatibility bindings */
+  --primary: var(--primary-color);
+  --secondary: var(--elegant-gold);
+  --background: var(--background-color);
+  --on-background: var(--on-surface);
+
+  /* Typography Families */
+  --font-headline: 'Cinzel', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --spacing-base: 8px;
+  --container-max: 1280px;
+  --gutter: 32px;
+  --margin-desktop: 64px;
+  --margin-mobile: 24px;
+  --section-gap: 120px;
+
+  /* Border Radii */
+  --radius-sm: 0.125rem;     /* 2px */
+  --radius-default: 0.25rem; /* 4px */
+  --radius-md: 0.375rem;      /* 6px */
+  --radius-lg: 0.5rem;       /* 8px */
+  --radius-xl: 0.75rem;      /* 12px */
+  --radius-full: 9999px;
+
+  /* Transition timings */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-premium: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Dark Theme Variables Mapping */
+.dark {
+  --surface: #1E2022;                 /* Derin Kömür */
+  --surface-dim: #151718;
+  --surface-bright: #2C2F32;
+  --surface-container-lowest: #0F1011;
+  --surface-container-low: #232628;
+  --surface-container: #292C2E;
+  --surface-container-high: #303336;
+  --surface-container-highest: #3C3F43;
+  --on-surface: #FBF9F6;
+  --on-surface-variant: #C9C6C1;
+  --inverse-surface: #FBF9F6;
+  --inverse-on-surface: #1E2022;
+  --outline: #8A8D90;
+  --outline-variant: #4A4D50;
+
+  --stone-gray: #292C2E;
+  --paper-white: #232628;
+  --background-color: #1E2022;
+  --background: #1E2022;
+  --on-background: #FBF9F6;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background);
+  color: var(--on-background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Typography Scales */
+.font-display-lg {
+  font-family: var(--font-headline);
+  font-size: 40px; /* Base size for mobile */
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.font-headline-lg {
+  font-family: var(--font-headline);
+  font-size: 32px; /* Base size for mobile */
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.font-headline-md {
+  font-family: var(--font-headline);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.font-body-lg {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.font-body-md {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.font-label-caps {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.33;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.font-button {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.43;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Media Queries for Typography Scale Up (Desktop) */
+@media (min-width: 768px) {
+  .font-display-lg {
+    font-size: 60px;
+    line-height: 68px;
+  }
+  .font-headline-lg {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .font-headline-md {
+    font-size: 26px;
+    line-height: 34px;
+  }
+}
+
+/* Layout & Containers */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--margin-mobile);
+  padding-right: var(--margin-mobile);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--margin-desktop);
+    padding-right: var(--margin-desktop);
+  }
+}
+
+.section {
+  padding-top: calc(var(--section-gap) / 2);
+  padding-bottom: calc(var(--section-gap) / 2);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: var(--radius-default);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+  border: 1px solid transparent;
+  outline: none;
+  gap: 8px;
+}
+
+/* Terracotta Red Base -> Gold Hover */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--elegant-gold);
+  border-color: var(--elegant-gold);
+  color: #FFFFFF;
+}
+
+/* Transparent Base -> Gold Border & Text -> Gold Fill on Hover */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--elegant-gold);
+  border-color: var(--elegant-gold);
+}
+
+.btn-secondary:hover {
+  background-color: var(--elegant-gold);
+  color: #FFFFFF;
+}
+
+/* Thin border, transparent base -> charcoal outline */
+.btn-outline {
+  background-color: transparent;
+  color: var(--on-background);
+  border-color: var(--outline-variant);
+}
+
+.btn-outline:hover {
+  border-color: var(--on-background);
+  background-color: var(--surface-container-low);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--on-background);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.btn-ghost:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+/* Cards & Containers with Elevation/Depth rules */
+.card {
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--stone-gray);
+  border-radius: var(--radius-default);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-premium);
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(156, 61, 45, 0.06); /* Soft Terracotta shadow */
+  border-color: var(--elegant-gold);
+}
+
+.dark .card-hover-effect:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Variant 1: Editorial Luxury (Minimalist, structured, asymmetrical link) */
+.card-editorial {
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--stone-gray);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition-premium);
+}
+.card-editorial:hover {
+  border-color: var(--elegant-gold);
+  transform: translateY(-6px);
+}
+.card-editorial-image {
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-container);
+}
+.card-editorial-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-premium);
+}
+.card-editorial:hover .card-editorial-image img {
+  transform: scale(1.04);
+}
+.card-editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--elegant-gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-top: auto;
+  align-self: flex-start;
+  transition: var(--transition-smooth);
+}
+.card-editorial:hover .card-editorial-link {
+  color: var(--primary-color);
+}
+
+/* Variant 2: Glassmorphic Overlay (Interactive cover photo with expand-on-hover drawer) */
+.card-overlay-glass {
+  position: relative;
+  height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid var(--stone-gray);
+  transition: var(--transition-premium);
+}
+.card-overlay-glass-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-premium);
+  z-index: 1;
+}
+.card-overlay-glass:hover .card-overlay-glass-img {
+  transform: scale(1.08);
+}
+.card-overlay-glass-drawer {
+  position: relative;
+  z-index: 2;
+  background: rgba(251, 249, 246, 0.82); /* Kum Beji overlay */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 24px;
+  margin: 12px;
+  border-radius: var(--radius-md);
+  max-height: 120px;
+  transition: var(--transition-premium);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dark .card-overlay-glass-drawer {
+  background: rgba(30, 32, 34, 0.82); /* Kömür overlay */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.card-overlay-glass:hover .card-overlay-glass-drawer {
+  max-height: 280px;
+  background: rgba(251, 249, 246, 0.92);
+}
+.dark .card-overlay-glass:hover .card-overlay-glass-drawer {
+  background: rgba(30, 32, 34, 0.95);
+}
+.card-overlay-glass-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition-smooth);
+  margin-top: 4px;
+}
+.card-overlay-glass:hover .card-overlay-glass-hidden {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variant 3: Horizontal Catalogue (Landscape view for lists/directories) */
+.card-horizontal {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--stone-gray);
+  background-color: var(--surface-container-lowest);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition-premium);
+}
+@media (min-width: 640px) {
+  .card-horizontal {
+    grid-template-columns: 240px 1fr;
+  }
+}
+.card-horizontal:hover {
+  border-color: var(--elegant-gold);
+  box-shadow: 0 10px 24px rgba(156, 61, 45, 0.03);
+}
+.card-horizontal-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: var(--transition-premium);
+}
+@media (min-width: 640px) {
+  .card-horizontal-img {
+    height: 100%;
+  }
+}
+.card-horizontal:hover .card-horizontal-img {
+  transform: scale(1.03);
+}
+.card-horizontal-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Variant 4: Holographic Membership Pass (Tactile render with chip and gold sheens) */
+.card-holographic-pass {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  height: 220px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #1E2022 0%, #35383B 50%, #151617 100%);
+  border: 1px solid rgba(197, 168, 128, 0.35); /* Elegant gold transparent border */
+  padding: 24px;
+  color: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition-premium);
+}
+.card-holographic-pass:hover {
+  transform: translateY(-8px) rotate(1deg);
+  box-shadow: 0 20px 40px rgba(197, 168, 128, 0.18);
+  border-color: var(--elegant-gold);
+}
+/* Foil sheen effect overlay */
+.card-holographic-pass::after {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.1) 48%,
+    rgba(197, 168, 128, 0.25) 50%,
+    rgba(255, 255, 255, 0.1) 52%,
+    transparent 55%
+  );
+  transform: rotate(-10deg);
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+.card-holographic-pass:hover::after {
+  top: 100%;
+  left: 100%;
+}
+.card-holographic-pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+}
+.card-holographic-pass-chip {
+  width: 36px;
+  height: 26px;
+  background: linear-gradient(135deg, #FFD700 0%, var(--elegant-gold) 100%);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.card-holographic-pass-chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0,0,0,0.15);
+}
+.card-holographic-pass-chip::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0,0,0,0.15);
+}
+.card-holographic-pass-body {
+  z-index: 2;
+}
+.card-holographic-pass-serial {
+  font-family: monospace;
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  color: #E6DFD5;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  margin-bottom: 8px;
+}
+.card-holographic-pass-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 2;
+}
+
+/* Chips / Tags */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container);
+  color: var(--on-surface-variant);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Input Fields */
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--stone-gray);
+  color: var(--on-background);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.form-control:focus {
+  border-bottom-color: var(--elegant-gold);
+}
+
+.form-control::placeholder {
+  color: var(--outline);
+  opacity: 0.6;
+}
+
+/* Glassmorphism utility for elegant nav/overlays */
+.glassmorphism {
+  background-color: rgba(251, 249, 246, 0.85); /* Kum Beji overlay */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--stone-gray);
+}
+
+.dark .glassmorphism {
+  background-color: rgba(30, 32, 34, 0.85); /* Kömür overlay */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Premium Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Delay Utilities for staggered entrance */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+/* Custom Switch component */
+.custom-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.custom-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: transparent;
+  border: 2px solid var(--outline-variant);
+  border-radius: 24px;
+  transition: var(--transition-smooth);
+}
+
+.switch-slider::before {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--outline-variant);
+  border-radius: 50%;
+  transition: var(--transition-smooth);
+}
+
+/* Check icon shown inside the switch when checked */
+.switch-slider .check-icon {
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--elegant-gold);
+  opacity: 0;
+  transition: var(--transition-smooth);
+  pointer-events: none;
+}
+
+/* Checked state transitions */
+.custom-switch input:checked + .switch-slider {
+  border-color: var(--elegant-gold);
+}
+
+.custom-switch input:checked + .switch-slider::before {
+  transform: translateX(24px);
+  background-color: var(--elegant-gold);
+}
+
+.custom-switch input:checked + .switch-slider .check-icon {
+  opacity: 1;
+}
+
+/* Tooltip styling for language buttons */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--deep-charcoal);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--stone-gray);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.dark .tooltip-text {
+  background-color: #FFFFFF;
+  color: var(--deep-charcoal);
+  border-color: var(--outline-variant);
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(2px);
+}
+
+/* Hero Overlay Gradients for clean readability without boxed cards */
+.hero-gradient-overlay {
+  background: linear-gradient(to right, var(--background-color) 0%, var(--background-color) 35%, rgba(251, 249, 246, 0.7) 55%, transparent 100%);
+}
+.dark .hero-gradient-overlay {
+  background: linear-gradient(to right, var(--background-color) 0%, var(--background-color) 35%, rgba(30, 32, 34, 0.7) 55%, transparent 100%);
+}
+.hero-right-overlay {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 100%);
+}
+
+/* 3D Floating and Rotating Cards */
+.animated-3d-card {
+  transform-style: preserve-3d;
+  animation: floatAndRotate 6s ease-in-out infinite;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.animated-3d-card-delayed {
+  transform-style: preserve-3d;
+  animation: floatAndRotate 6s ease-in-out infinite;
+  animation-delay: -3s;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes floatAndRotate {
+  0% { transform: translateY(0px) rotateY(-4deg) rotateX(4deg); }
+  50% { transform: translateY(-8px) rotateY(4deg) rotateX(-4deg); }
+  100% { transform: translateY(0px) rotateY(-4deg) rotateX(4deg); }
+}
+
+/* Custom interactive shadows for premium glow */
+.hover\:shadow-cyan-glow:hover {
+  box-shadow: 0 20px 40px rgba(0, 173, 198, 0.25);
+  border-color: var(--elegant-gold) !important;
+  transform: translateY(-4px) scale(1.02);
+}
+
+.hover\:shadow-gold-glow:hover {
+  box-shadow: 0 20px 40px rgba(0, 173, 198, 0.25);
+  border-color: var(--elegant-gold) !important;
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* --- CUSTOM THEME OVERRIDES --- */
+:root {
+  --primary-color: #10cdda;
+  --elegant-gold: #FF9377;
+  --tertiary: #00539C;
+  --font-headline: 'Inter';
+  --font-body: 'Inter';
+  --surface: #FBF9F6;
+  --background-color: #FBF9F6;
+  --surface-dim: #E6DFD5;
+  --stone-gray: #E6DFD5;
+  --surface-container-lowest: #FFFFFF;
+  --paper-white: #FFFFFF;
+  --surface-container-low: #ffffff;
+  --surface-container: #f1efec;
+  --surface-container-high: #e7e5e2;
+  --surface-container-highest: #dcdad7;
+  --on-surface: #1E2022;
+  --background: #FBF9F6;
+  --on-background: #1E2022;
+}
+
+.dark {
+  --surface: #1E2022;
+  --background-color: #1E2022;
+  --background: #1E2022;
+  --surface-dim: #151718;
+  --stone-gray: #151718;
+  --surface-container-lowest: #0F1011;
+  --paper-white: #0F1011;
+  --surface-container-low: #323436;
+  --surface-container: #47494b;
+  --surface-container-high: #5b5d5f;
+  --surface-container-highest: #707274;
+  --on-surface: #FBF9F6;
+  --on-background: #FBF9F6;
+}

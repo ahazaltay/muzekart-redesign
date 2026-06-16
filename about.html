@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="tr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>MUZE | Hakkımızda ve Köklü Tarihimiz</title>
+    <script src="theme.js"></script>
+    <script src="translations.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="index.css"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "background": "var(--background-color)",
+                "paper-white": "var(--paper-white)",
+                "deep-charcoal": "var(--deep-charcoal)",
+                "elegant-gold": "var(--elegant-gold)",
+                "stone-gray": "var(--stone-gray)",
+                "primary": "var(--primary-color)",
+                "surface": "var(--background-color)"
+            },
+            "borderRadius": {
+                "DEFAULT": "var(--radius-default)",
+                "lg": "var(--radius-lg)",
+                "xl": "var(--radius-xl)",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "24px",
+                "section-gap": "var(--section-gap)",
+                "container-max": "1280px",
+                "base": "8px",
+                "gutter": "32px",
+                "margin-desktop": "var(--margin-desktop)",
+                "desktop": "var(--margin-desktop)"
+            },
+            "fontFamily": {
+                "headline-md": ["var(--font-headline)"],
+                "headline-lg": ["var(--font-headline)"],
+                "body-lg": ["var(--font-body)"],
+                "label-caps": ["var(--font-body)"],
+                "button": ["var(--font-body)"],
+                "body-md": ["var(--font-body)"],
+                "display-lg": ["var(--font-headline)"]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-elegant-gold selection:text-white transition-colors duration-300">
+
+<!-- Header / Navigation -->
+<header class="fixed top-0 w-full z-50 bg-paper-white dark:bg-deep-charcoal border-b border-stone-gray dark:border-on-surface-variant transition-all duration-300 h-20">
+    <nav class="flex justify-between items-center h-full px-desktop max-w-container-max mx-auto gap-4">
+        <div class="flex items-center gap-6 xl:gap-8 flex-shrink-0">
+            <a class="font-display-lg text-xl md:text-2xl tracking-tighter flex items-center gap-2 whitespace-nowrap" href="index.html">
+                <!-- SVG Logo: Black circle with white 'M' -->
+                <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" class="fill-black stroke-black dark:fill-none dark:stroke-white transition-all duration-300" stroke-width="6"/>
+                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
+                </svg>
+                <span><span class="text-primary">Müze</span><span class="text-deep-charcoal dark:text-white">Kart</span></span>
+            </a>
+            <div class="hidden lg:flex gap-4 xl:gap-5 items-center">
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="index.html" data-i18n="nav_home">Home</a>
+                <a class="text-on-surface hover:text-elegant-gold transition-colors font-body-md text-sm font-semibold whitespace-nowrap" href="about.html" data-i18n="nav_about">About</a>
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="museums.html" data-i18n="nav_museums">Museums</a>
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="night-museum.html" data-i18n="nav_night">Night Museum</a>
+                <a class="bg-primary text-white hover:bg-elegant-gold transition-colors font-body-md text-xs font-semibold px-3.5 py-1.5 rounded-full whitespace-nowrap ml-1" href="museumpass.html" data-i18n="nav_pass">MuseumPass</a>
+                <a class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold transition-colors font-body-md text-sm whitespace-nowrap" href="e-ticket.html" data-i18n="nav_ticket">E-Ticket</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 xl:gap-6 flex-shrink-0">
+            <!-- Theme Toggle Button -->
+            <button onclick="V2Theme.toggleMode()" class="text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold p-2 transition-colors flex items-center justify-center" aria-label="Toggle Theme">
+                <span class="material-symbols-outlined theme-toggle-icon text-xl">dark_mode</span>
+            </button>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center gap-2 border-r border-stone-gray dark:border-on-surface-variant pr-4">
+                <button onclick="setLanguage('tr')" class="lang-btn text-xs font-semibold transition-colors hover:text-elegant-gold" data-lang="tr">TR</button>
+                <span class="text-stone-gray/30 text-xs">|</span>
+                <button onclick="setLanguage('en')" class="lang-btn text-xs font-semibold transition-colors hover:text-elegant-gold" data-lang="en">ENG</button>
+                <span class="text-stone-gray/30 text-xs">|</span>
+                <button onclick="setLanguage('de')" class="lang-btn text-xs font-semibold transition-colors hover:text-elegant-gold" data-lang="de">DE</button>
+            </div>
+            
+            <div class="hidden lg:flex items-center gap-1.5 font-semibold ml-4 xl:ml-6">
+                <div class="tooltip-container">
+                    <a href="login.html" class="text-elegant-gold hover:text-primary transition-colors p-2 flex items-center justify-center rounded-full hover:bg-stone-gray/10 dark:hover:bg-white/10" aria-label="Login">
+                        <!-- Simple Outline Key Icon -->
+                        <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4" />
+                            <line x1="12" y1="11" x2="12" y2="20" />
+                            <path d="M12 15h3" />
+                            <path d="M12 18h3" />
+                        </svg>
+                    </a>
+                    <span class="tooltip-text" data-i18n="btn_login">Giriş Yap</span>
+                </div>
+                <div class="tooltip-container">
+                    <a href="register.html" class="text-elegant-gold hover:text-primary transition-colors p-2 flex items-center justify-center rounded-full hover:bg-stone-gray/10 dark:hover:bg-white/10" aria-label="Register">
+                        <!-- Simple Outline User + Plus Icon -->
+                        <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="10" cy="8" r="4" />
+                            <path d="M3 20c0-3.5 3-6 7-6s7 2.5 7 6" />
+                            <line x1="19" y1="11" x2="19" y2="17" />
+                            <line x1="16" y1="14" x2="22" y2="14" />
+                        </svg>
+                    </a>
+                    <span class="tooltip-text" data-i18n="btn_register">Kayıt Ol</span>
+                </div>
+            </div>
+
+            <!-- Hamburger Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden text-on-surface-variant dark:text-surface-variant hover:text-elegant-gold focus:outline-none transition-colors p-2">
+                <span class="material-symbols-outlined text-[28px] !leading-none block">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-20 bg-paper-white dark:bg-deep-charcoal border-b border-stone-gray dark:border-on-surface-variant shadow-lg transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 z-40 flex flex-col p-6 gap-4">
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="index.html" data-i18n="nav_home">Home</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="about.html" data-i18n="nav_about">About</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="museums.html" data-i18n="nav_museums">Museums</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="night-museum.html" data-i18n="nav_night">Night Museum</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="museumpass.html" data-i18n="nav_pass">MuseumPass</a>
+        <a class="font-body-md text-body-md text-on-surface-variant py-2 border-b border-stone-gray/10" href="e-ticket.html" data-i18n="nav_ticket">E-Ticket</a>
+        
+        <!-- Mobile Language Switcher -->
+        <div class="flex gap-4 py-2 border-b border-stone-gray/10">
+            <button onclick="setLanguage('tr')" class="lang-btn text-sm font-semibold flex-1 text-center py-1 border border-stone-gray/30" data-lang="tr">TR</button>
+            <button onclick="setLanguage('en')" class="lang-btn text-sm font-semibold flex-1 text-center py-1 border border-stone-gray/30" data-lang="en">ENG</button>
+            <button onclick="setLanguage('de')" class="lang-btn text-sm font-semibold flex-1 text-center py-1 border border-stone-gray/30" data-lang="de">DE</button>
+        </div>
+        
+        <div class="flex gap-4 mt-2">
+            <a href="login.html" class="flex-1 text-center py-2.5 border border-stone-gray font-button text-button text-on-surface" data-i18n="btn_login">Login</a>
+            <a href="register.html" class="flex-1 text-center bg-deep-charcoal text-white py-2.5 font-button text-button hover:bg-elegant-gold transition-all text-center" data-i18n="btn_register">Register</a>
+        </div>
+    </div>
+</header>
+
+<main class="pt-20">
+    <!-- About Page Hero Banner -->
+    <section class="relative h-[45vh] w-full overflow-hidden bg-deep-charcoal flex items-center justify-center">
+        <img src="assets/images/cover_about_us.jpg" alt="About Us Cover" class="absolute inset-0 w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10"></div>
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto space-y-4">
+            <span class="font-label-caps text-elegant-gold tracking-widest text-sm" data-i18n="hero_tagline">ZAMANSIZ MİRAS</span>
+            <h1 class="font-display-lg text-4xl md:text-5xl text-white font-bold uppercase tracking-wider" data-i18n="about_title">Hakkımızda</h1>
+            <p class="font-body-lg text-stone-gray text-base md:text-lg max-w-2xl mx-auto" data-i18n="about_subtitle">Bir Ulusun Tarihini ve Kültürel Mirasını Koruyoruz</p>
+        </div>
+    </section>
+
+    <!-- Asymmetric Content Section -->
+    <section class="section container">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Side: Deep Rooted Legacy Details (7 Cols) -->
+            <div class="lg:col-span-7 space-y-6">
+                <span class="font-label-caps text-elegant-gold tracking-widest block" data-i18n="featured_tag">SEÇKİN KOLEKSİYON</span>
+                <h2 class="font-headline-lg text-3xl md:text-4xl text-deep-charcoal dark:text-white font-bold" data-i18n="about_legacy_title">Köklü Mirasımız</h2>
+                <div class="w-16 h-[2px] bg-elegant-gold my-4"></div>
+                <p class="font-body-lg text-on-surface-variant dark:text-surface-variant leading-relaxed text-justify" data-i18n="about_legacy_text1">
+                    Türkiye Cumhuriyeti Kültür ve Turizm Bakanlığı denetimindeki MÜZE portalı, Anadolu'nun binlerce yıllık medeniyet birikimini dünyaya sunma misyonuyla kurulmuştur. Göbeklitepe'den Efes'e, Truva'dan Selçuklu ve Osmanlı miraslarına uzanan bu zengin topraklar, insanlığın ortak hafızasıdır.
+                </p>
+                <p class="font-body-md text-on-surface-variant/80 dark:text-surface-variant/80 leading-relaxed text-justify" data-i18n="about_legacy_text2">
+                    Teknolojiyi kültürel mirasın korunması ve erişilebilir kılınması için entegre ederek, yerli ve yabancı tüm ziyaretçilerin bu eşsiz hazinelere en konforlu şekilde erişmesini hedefliyoruz. Müzelerimiz sadece geçmişi değil, aynı zamanda geleceğe ilham veren ortak değerlerimizi temsil eder.
+                </p>
+            </div>
+
+            <!-- Right Side: Editorial Image Block (5 Cols) -->
+            <div class="lg:col-span-5 relative">
+                <!-- Large Image Border Accent -->
+                <div class="absolute -inset-4 border border-elegant-gold/20 rounded z-0"></div>
+                <!-- Image Wrapper -->
+                <div class="relative z-10 card-editorial-image aspect-[4/5] rounded shadow-lg overflow-hidden border border-stone-gray dark:border-on-surface-variant">
+                    <img src="assets/images/museum_statue_bust.png" alt="Museum Sculpture Bust" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Timeline Section -->
+    <section class="section bg-stone-gray/10 dark:bg-stone-gray/5 border-y border-stone-gray dark:border-on-surface-variant">
+        <div class="container">
+            <div class="text-center mb-16">
+                <span class="font-label-caps text-elegant-gold tracking-widest block mb-2" data-i18n="hero_tagline">KRONOLOJİ</span>
+                <h2 class="font-headline-lg text-3xl md:text-4xl text-deep-charcoal dark:text-white" data-i18n="about_timeline_title">Kültür Tarihimizdeki Önemli Kilometre Taşları</h2>
+                <div class="w-12 h-[2px] bg-elegant-gold mx-auto mt-4"></div>
+            </div>
+
+            <!-- Vertical Timeline Layout -->
+            <div class="relative border-l-2 border-elegant-gold/30 max-w-4xl mx-auto pl-8 space-y-12">
+                <!-- Timeline Item 1 -->
+                <div class="relative group">
+                    <!-- Dot -->
+                    <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-paper-white dark:bg-deep-charcoal border-2 border-elegant-gold flex items-center justify-center transition-all duration-300 group-hover:bg-elegant-gold z-10">
+                        <div class="w-2 h-2 rounded-full bg-elegant-gold group-hover:bg-white transition-all"></div>
+                    </div>
+                    <!-- Card content -->
+                    <div class="bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant p-6 rounded shadow-sm hover:border-elegant-gold transition-all duration-300">
+                        <span class="font-display-lg text-2xl text-primary dark:text-elegant-gold font-bold block mb-2" data-i18n="about_find_1_date">1891</span>
+                        <h3 class="font-headline-md text-lg text-deep-charcoal dark:text-white mb-2" data-i18n="about_find_1_title">Müze-i Hümayun'un Kurulması</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant" data-i18n="about_find_1_desc">Osman Hamdi Bey öncülüğünde Türkiye'nin ilk modern müze binası olan İstanbul Arkeoloji Müzesi ziyarete açıldı.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative group">
+                    <!-- Dot -->
+                    <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-paper-white dark:bg-deep-charcoal border-2 border-elegant-gold flex items-center justify-center transition-all duration-300 group-hover:bg-elegant-gold z-10">
+                        <div class="w-2 h-2 rounded-full bg-elegant-gold group-hover:bg-white transition-all"></div>
+                    </div>
+                    <!-- Card content -->
+                    <div class="bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant p-6 rounded shadow-sm hover:border-elegant-gold transition-all duration-300">
+                        <span class="font-display-lg text-2xl text-primary dark:text-elegant-gold font-bold block mb-2" data-i18n="about_find_2_date">1963</span>
+                        <h3 class="font-headline-md text-lg text-deep-charcoal dark:text-white mb-2" data-i18n="about_find_2_title">Efes Kazılarının Başlaması</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant" data-i18n="about_find_2_desc">Avusturya Arkeoloji Enstitüsü ve Türk ekiplerin ortaklığında Efes Antik Kentinde modern dönemin en büyük kazı ve restorasyon çalışmaları başlatıldı.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative group">
+                    <!-- Dot -->
+                    <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-paper-white dark:bg-deep-charcoal border-2 border-elegant-gold flex items-center justify-center transition-all duration-300 group-hover:bg-elegant-gold z-10">
+                        <div class="w-2 h-2 rounded-full bg-elegant-gold group-hover:bg-white transition-all"></div>
+                    </div>
+                    <!-- Card content -->
+                    <div class="bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant p-6 rounded shadow-sm hover:border-elegant-gold transition-all duration-300">
+                        <span class="font-display-lg text-2xl text-primary dark:text-elegant-gold font-bold block mb-2" data-i18n="about_find_3_date">2018</span>
+                        <h3 class="font-headline-md text-lg text-deep-charcoal dark:text-white mb-2" data-i18n="about_find_3_title">Göbeklitepe'nin UNESCO Listesine Girmesi</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant" data-i18n="about_find_3_desc">Dünyanın en eski tapınak merkezi Göbeklitepe, UNESCO Dünya Miras Listesi'ne alınarak tüm dünyaya tanıtıldı.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-section" class="section container">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
+            
+            <!-- Left Grid: Contact info (5 cols) -->
+            <div class="md:col-span-5 space-y-6">
+                <span class="font-label-caps text-elegant-gold tracking-widest block" data-i18n="footer_contact">İLETİŞİM</span>
+                <h2 class="font-headline-lg text-2xl md:text-3xl text-deep-charcoal dark:text-white font-bold" data-i18n="about_contact_title">Bize Ulaşın</h2>
+                <p class="font-body-md text-sm text-on-surface-variant dark:text-surface-variant leading-relaxed" data-i18n="about_contact_desc">Sorularınız, iş birliği talepleriniz veya geri bildirimleriniz için yandaki formu doldurarak bizimle iletişime geçebilirsiniz.</p>
+                
+                <div class="space-y-4 pt-4 text-sm font-body-md text-on-surface-variant dark:text-surface-variant">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-elegant-gold">call</span>
+                        <span data-i18n="ticket_secure_note" class="hidden"></span>
+                        <span data-i18n="ticket_assistance_phone">Bizi arayın: +90 312 212 83 00</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-elegant-gold">mail</span>
+                        <span>info@muze.gov.tr</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-elegant-gold mt-1">location_on</span>
+                        <span>T.C. Kültür ve Turizm Bakanlığı, Atatürk Bulvarı No: 191, Kavaklıdere, Ankara</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Grid: Contact form (7 cols) -->
+            <div class="md:col-span-7 bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant p-8 rounded shadow-sm">
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <div class="input-group">
+                        <label class="input-label" data-i18n="ticket_label_name">AD SOYAD</label>
+                        <input type="text" required class="form-control focus:ring-0 focus:border-elegant-gold text-sm" placeholder="İsminiz...">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label" data-i18n="ticket_label_email">E-POSTA ADRESİ</label>
+                        <input type="email" required class="form-control focus:ring-0 focus:border-elegant-gold text-sm" placeholder="E-posta adresiniz...">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label" data-i18n="contact_label_subject">KONU</label>
+                        <select required class="bg-transparent border-0 border-b border-stone-gray dark:border-on-surface-variant focus:ring-0 focus:border-elegant-gold text-sm py-2 pl-0 text-on-background w-full">
+                            <option value="general">Genel Bilgi / General Inquiry</option>
+                            <option value="ticket">E-Bilet / E-Ticket Support</option>
+                            <option value="pass">MuseumPass Support</option>
+                            <option value="cooperation">İş Birliği / Cooperation</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label" data-i18n="about_label_message">MESAJINIZ</label>
+                        <textarea required rows="4" class="form-control focus:ring-0 focus:border-elegant-gold text-sm resize-none" placeholder="Mesajınızı buraya yazın..." data-i18n-placeholder="about_placeholder_message"></textarea>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <label class="custom-switch">
+                            <input type="checkbox" required>
+                            <span class="switch-slider">
+                                <span class="check-icon material-symbols-outlined text-[10px]">check</span>
+                            </span>
+                        </label>
+                        <span class="text-xs text-on-surface-variant dark:text-surface-variant" data-i18n="contact_label_gdpr">Kişisel verilerimin KVKK kapsamında işlenmesine onay veriyorum.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary bg-primary text-white w-full py-3 hover:bg-elegant-gold flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">send</span>
+                        <span data-i18n="btn_send_message">Mesaj Gönder</span>
+                    </button>
+                    
+                    <p id="contact-success" class="text-sm text-primary dark:text-elegant-gold hidden font-semibold text-center mt-4" data-i18n="about_contact_success">Mesajınız başarıyla gönderildi! Destek ekibimiz en kısa sürede sizinle iletişime geçecektir.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-deep-charcoal dark:bg-black border-t border-stone-gray/10 text-white pt-20 pb-12">
+    <div class="container space-y-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+            
+            <!-- Column 1: Brand Info & Social Media -->
+            <div class="space-y-6">
+                <a class="font-display-lg text-3xl tracking-tighter flex items-center gap-2" href="index.html">
+                    <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" class="fill-black stroke-black dark:fill-none dark:stroke-white transition-all duration-300" stroke-width="6"/>
+                        <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
+                    </svg>
+                    <span><span class="text-primary">Müze</span><span class="text-white">Kart</span></span>
+                </a>
+                <p class="font-body-md text-stone-gray max-w-sm text-sm" data-i18n="footer_desc">Türkiye müzelerinin resmi portalı. Geçmişi koruyor, geleceğe ilham veriyoruz. Bin yıllık mirası kutlamak için bize katılın.</p>
+                
+                <!-- Social Media (3 Icons) -->
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Facebook">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Twitter">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Instagram">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Column 2: Discovery -->
+            <div>
+                <h5 class="text-elegant-gold font-label-caps text-label-caps uppercase mb-8" data-i18n="footer_col_discovery">Discovery</h5>
+                <ul class="space-y-4 font-body-md text-stone-gray text-sm">
+                    <li><a class="hover:text-white transition-colors" href="museums.html" data-i18n="footer_map">Map of Museums</a></li>
+                    <li><a class="hover:text-white transition-colors" href="museums.html" data-i18n="footer_routes">Cultural Routes</a></li>
+                    <li><a class="hover:text-white transition-colors" href="night-museum.html" data-i18n="footer_tours">Virtual Tours</a></li>
+                    <li><a class="hover:text-white transition-colors" href="about.html" data-i18n="footer_finds">Latest Finds</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Corporate Links from Muze.gov.tr -->
+            <div>
+                <h5 class="text-elegant-gold font-label-caps text-label-caps uppercase mb-8" data-i18n="footer_col_corporate">Corporate</h5>
+                <ul class="space-y-4 font-body-md text-stone-gray text-sm">
+                    <li><a class="hover:text-white transition-colors" href="about.html#contact-section" data-i18n="footer_contact">İletişim</a></li>
+                    <li><a class="hover:text-white transition-colors" href="https://muze.gov.tr/document/bakanlik_yonergesi_tr.pdf" target="_blank" rel="noreferrer noopener" data-i18n="footer_directive">Bakanlık Yönergesi</a></li>
+                    <li>
+                        <a class="hover:text-white transition-colors flex items-center gap-1.5" href="https://muze.gov.tr/document/e-devlet_bilgilendirme.pdf" target="_blank" rel="noreferrer noopener">
+                            <span data-i18n="footer_edevlet">e-Devlet Hizmet Kılavuzu</span>
+                        </a>
+                    </li>
+                    <li><a class="hover:text-white transition-colors" href="https://acente.muze.gov.tr" target="_blank" rel="noreferrer noopener" data-i18n="footer_b2b">Kurumsal Satış</a></li>
+                    <li><a class="hover:text-white transition-colors" href="https://muze.gov.tr/kisisel-verilerin-islenmesi" target="_blank" rel="noreferrer noopener" data-i18n="footer_privacy">Ki̇şi̇sel Veri̇leri̇n İşlenmesi̇</a></li>
+                    <li><a class="hover:text-white transition-colors" href="https://muze.gov.tr/cerezpolitikasi" target="_blank" rel="noreferrer noopener" data-i18n="footer_cookies">Çerez Poli̇ti̇kası</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <!-- Institutional Partners Row -->
+        <div class="flex justify-center sm:justify-start items-center opacity-65 hover:opacity-100 transition-opacity duration-300">
+            <div class="flex flex-wrap gap-8 items-center justify-center">
+                <a href="https://goturkey.com/" target="_blank" rel="noreferrer noopener" class="transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://muze.gov.tr/img/turkiye-logo.png" alt="Türkiye" class="h-8 object-contain brightness-0 invert">
+                </a>
+                <a href="http://www.kultur.gov.tr/" target="_blank" rel="noreferrer noopener" class="transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://muze.gov.tr/img/bakanlik-logo.png" alt="T.C. Kültür ve Turizm Bakanlığı" class="h-12 object-contain brightness-0 invert">
+                </a>
+                <a href="http://www.dosimm.gov.tr/" target="_blank" rel="noreferrer noopener" class="transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://muze.gov.tr/img/dosimm-logo.png" alt="DÖSİMM" class="h-6 object-contain brightness-0 invert">
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Row: Copyright & Official Domain Links -->
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+            <p class="text-stone-gray/50 font-body-md text-xs text-center lg:text-left" data-i18n="footer_copyright">© 2024 Republic of Türkiye Ministry of Culture and Tourism. All rights reserved.</p>
+            <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-stone-gray/40">
+                <a href="http://www.kulturturizm.gov.tr" target="_blank" rel="noreferrer noopener" class="hover:text-elegant-gold transition-colors">kulturturizm.gov.tr</a>
+                <a href="http://www.dosim.gov.tr" target="_blank" rel="noreferrer noopener" class="hover:text-elegant-gold transition-colors">dosim.gov.tr</a>
+                <a href="https://www.goturkey.com" target="_blank" rel="noreferrer noopener" class="hover:text-elegant-gold transition-colors">goturkey.com</a>
+                <span class="text-stone-gray/20 hidden sm:inline">|</span>
+                <div class="flex gap-4">
+                    <span onclick="setLanguage('tr')" class="text-stone-gray/60 cursor-pointer hover:text-white transition-colors">TR</span>
+                    <span onclick="setLanguage('en')" class="text-stone-gray/60 cursor-pointer hover:text-white transition-colors">EN</span>
+                    <span onclick="setLanguage('de')" class="text-stone-gray/60 cursor-pointer hover:text-white transition-colors">DE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Header Scroll Effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('shadow-md', 'h-16');
+            header.classList.remove('h-20');
+        } else {
+            header.classList.remove('shadow-md', 'h-16');
+            header.classList.add('h-20');
+        }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('pointer-events-none');
+            if (isHidden) {
+                mobileMenu.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+                mobileMenuBtn.querySelector('span').textContent = 'close';
+            } else {
+                mobileMenu.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
+                mobileMenuBtn.querySelector('span').textContent = 'menu';
+            }
+        });
+    }
+
+    // Contact Form Submission Handler
+    function handleContactSubmit(e) {
+        e.preventDefault();
+        const successEl = document.getElementById('contact-success');
+        successEl.classList.remove('hidden');
+        e.target.reset();
+        setTimeout(() => {
+            successEl.classList.add('hidden');
+        }, 5000);
+    }
+
+    // Sync theme toggle icon
+    function updateThemeIcon() {
+        const isDark = document.documentElement.classList.contains('dark');
+        document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
+            icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateThemeIcon();
+        const originalToggle = window.V2Theme.toggleMode;
+        window.V2Theme.toggleMode = function() {
+            originalToggle();
+            updateThemeIcon();
+        }
+    });
+</script>
+</body>
+</html>
