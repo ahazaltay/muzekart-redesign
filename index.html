@@ -173,6 +173,11 @@
             
             <!-- Left Side: T.C. Vatandaşları (MüzeKart+) -->
             <div class="flex flex-col items-center text-center md:items-start md:text-left space-y-6">
+                <!-- Tag Badge (Moved to top & styled with outline-pulse and hover lift) -->
+                <div class="flex justify-center md:justify-start">
+                    <span class="chip bg-primary/5 hover:bg-primary/10 text-primary border border-primary/20 dark:bg-primary/20 dark:text-white dark:border-primary/40 font-label-caps text-xs px-4 py-1.5 shadow-sm transition-all duration-300" data-i18n="hero_tc_badge">T.C. Vatandaşı mısınız?</span>
+                </div>
+
                 <!-- 3D Card Wrapper -->
                 <div class="w-full flex justify-center md:justify-start">
                     <div class="relative w-80 max-w-full aspect-[1.586/1] rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-cyan-glow animated-3d-card border border-white/10" style="perspective: 1000px;">
@@ -184,7 +189,6 @@
                 
                 <!-- Typography & Copy -->
                 <div class="space-y-3">
-                    <span class="chip bg-primary/10 text-primary border-primary/20 dark:bg-primary/25 dark:text-white dark:border-primary/45 font-label-caps" data-i18n="hero_tc_badge">T.C. VATANDAŞLARI İÇİN</span>
                     <h2 class="font-display-lg text-2xl md:text-3xl lg:text-4xl text-on-surface dark:text-white font-bold leading-tight transition-colors duration-300" data-i18n="hero_tc_title"><span class="text-primary">MüzeKart+</span> ile Tarihe Sınırsız Yolculuk</h2>
                     <p class="font-body-md text-on-surface-variant dark:text-stone-gray/90 text-sm max-w-md transition-colors duration-300" data-i18n="hero_tc_desc">T.C. Kültür ve Turizm Bakanlığı'na bağlı 300'den fazla müze ve ören yerini 1 yıl boyunca yıllık sadece ₺60'ye sınırsız keşfedin.</p>
                 </div>
@@ -192,7 +196,7 @@
                 <!-- CTA buttons and dynamic details reveal -->
                 <div class="w-full max-w-md">
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-                        <a href="e-ticket.html?pass=muzekart" class="btn btn-primary bg-primary text-white hover:bg-elegant-gold transition-colors px-6 py-2.5 text-xs font-bold font-button uppercase" data-i18n="hero_tc_btn_buy">MüzeKart+ Al</a>
+                        <a href="e-ticket.html?pass=muzekart" class="btn btn-primary bg-primary text-white hover:bg-elegant-gold hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 px-6 py-2.5 text-xs font-bold font-button uppercase" data-i18n="hero_tc_btn_buy">MüzeKart+ Al</a>
                         <button onclick="toggleHeroInfo('tc')" class="btn btn-secondary text-on-surface border border-on-surface/30 dark:text-white dark:border-white/40 hover:border-elegant-gold hover:text-elegant-gold transition-colors px-5 py-2.5 text-xs font-bold font-button flex items-center gap-1.5 uppercase">
                             <span data-i18n="hero_btn_details">DETAYLI BİLGİ</span>
                             <span class="material-symbols-outlined text-sm tc-arrow-icon">expand_more</span>
@@ -213,6 +217,11 @@
             
             <!-- Right Side: Yabancı Ziyaretçiler (MuseumPass Türkiye) -->
             <div class="flex flex-col items-center text-center md:items-start md:text-left space-y-6">
+                <!-- Tag Badge (Moved to top & styled with outline-pulse and hover lift) -->
+                <div class="flex justify-center md:justify-start">
+                    <span class="chip bg-elegant-gold/5 hover:bg-elegant-gold/10 text-elegant-gold border border-elegant-gold/20 dark:bg-elegant-gold/20 dark:text-white dark:border-elegant-gold/40 font-label-caps text-xs px-4 py-1.5 shadow-sm transition-all duration-300" data-i18n="hero_en_badge">Visiting Turkey?</span>
+                </div>
+
                 <!-- 3D Card Wrapper -->
                 <div class="w-full flex justify-center md:justify-start">
                     <div class="relative w-80 max-w-full aspect-[1.586/1] rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-gold-glow animated-3d-card border border-white/10" style="perspective: 1000px; animation-delay: -3s;">
@@ -224,7 +233,6 @@
                 
                 <!-- Typography & Copy -->
                 <div class="space-y-3">
-                    <span class="chip bg-elegant-gold/15 text-elegant-gold border-elegant-gold/25 dark:bg-elegant-gold/25 dark:text-white dark:border-elegant-gold/45 font-label-caps" data-i18n="hero_en_badge">FOR INTERNATIONAL VISITORS</span>
                     <h2 class="font-display-lg text-2xl md:text-3xl lg:text-4xl text-on-surface dark:text-white font-bold leading-tight transition-colors duration-300" data-i18n="hero_en_title">Explore Turkey with <span class="text-primary">MuseumPass</span></h2>
                     <p class="font-body-md text-on-surface-variant dark:text-stone-gray/90 text-sm max-w-md transition-colors duration-300" data-i18n="hero_en_desc">Skip the ticket lines at Hagia Sophia, Ephesus, Pamukkale and more. Enjoy universal access across historical sites for 15 days.</p>
                 </div>
@@ -232,7 +240,7 @@
                 <!-- CTA buttons and dynamic details reveal -->
                 <div class="w-full max-w-md">
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-                        <a href="museumpass.html" class="btn btn-primary bg-primary text-white hover:bg-elegant-gold transition-colors px-6 py-2.5 text-xs font-bold font-button uppercase" data-i18n="hero_en_btn_buy">Get MuseumPass</a>
+                        <a href="museumpass.html" class="btn btn-primary bg-primary text-white hover:bg-elegant-gold hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 px-6 py-2.5 text-xs font-bold font-button uppercase" data-i18n="hero_en_btn_buy">Get MuseumPass</a>
                         <button onclick="toggleHeroInfo('en')" class="btn btn-secondary text-on-surface border border-on-surface/30 dark:text-white dark:border-white/40 hover:border-elegant-gold hover:text-elegant-gold transition-colors px-5 py-2.5 text-xs font-bold font-button flex items-center gap-1.5 uppercase">
                             <span data-i18n="hero_btn_details_en">PASSPORT INFO</span>
                             <span class="material-symbols-outlined text-sm en-arrow-icon">expand_more</span>
