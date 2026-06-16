@@ -163,10 +163,7 @@ function updateDynamicFavicon(primaryColor) {
   link.type = 'image/svg+xml';
   
   const fillHex = primaryColor.replace('#', '%23');
-  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="45" fill="${fillHex}" stroke="${fillHex}" stroke-width="6"/>
-    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
-  </svg>`;
+  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">`r`n    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="${fillHex}"/>`r`n  </svg>`;
   
   const dataUri = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgContent.trim());
   link.href = dataUri;

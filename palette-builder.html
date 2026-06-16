@@ -645,16 +645,7 @@
             
             let svgContent = '';
             if (isDarkMode) {
-                svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="6"/>
-                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
-                </svg>`;
-            } else {
-                const fillHex = primaryColor.replace('#', '%23');
-                svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" fill="${fillHex}" stroke="${fillHex}" stroke-width="6"/>
-                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
-                </svg>`;
+                svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">`r`n                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>`r`n                </svg>`;`r`n            } else {`r`n                const fillHex = primaryColor.replace('#', '%23');`r`n                svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">`r`n                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="${fillHex}"/>`r`n                </svg>`;
             }
             
             const dataUri = 'data:image/svg+xml;utf8,' + encodeURIComponent(svgContent.trim());

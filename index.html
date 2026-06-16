@@ -76,10 +76,7 @@
         <div class="flex items-center gap-6 xl:gap-8 flex-shrink-0">
             <a class="font-display-lg text-xl md:text-2xl tracking-tighter flex items-center gap-2 whitespace-nowrap" href="index.html">
                 <!-- SVG Logo: Black circle with white 'M' -->
-                <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" class="logo-circle transition-all duration-300" stroke-width="6"/>
-                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
-                </svg>
+                <svg class="w-10 h-10 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">`r`n                    <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="currentColor" class="text-primary transition-colors duration-300"/>`r`n                </svg>
                 <span><span class="text-primary">Müze</span><span class="text-deep-charcoal dark:text-white">Kart</span></span>
             </a>
             <div class="hidden lg:flex gap-4 xl:gap-5 items-center">
@@ -167,7 +164,7 @@
         <!-- Full-bleed background image -->
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500" style="background-image: url('assets/images/galata_hero.jpg');"></div>
         <!-- Dark/Light overlay to ensure text readability -->
-        <div class="absolute inset-0 bg-white/85 dark:bg-black/80 backdrop-blur-[1px] z-10 transition-colors duration-300"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-[#FBF9F6]/95 via-[#E8F8FA]/90 to-[#FBF9F6]/95 dark:from-black/90 dark:via-zinc-950/80 dark:to-black/90 backdrop-blur-[6px] z-10 transition-colors duration-300"></div>
 
         <div class="relative z-20 max-w-container-max mx-auto px-desktop w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
             
@@ -728,35 +725,21 @@
 <!-- Footer -->
 <footer class="bg-deep-charcoal dark:bg-black border-t border-stone-gray/10 text-white pt-20 pb-12">
     <div class="container space-y-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-8 items-start">
             
             <!-- Column 1: Brand Info & Social Media -->
-            <div class="space-y-6">
+            <div class="space-y-6 md:col-span-5">
                 <a class="font-display-lg text-3xl tracking-tighter flex items-center gap-2" href="index.html">
-                    <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" class="logo-circle transition-all duration-300" stroke-width="6"/>
-                        <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="white"/>
-                    </svg>
+                    <svg class="w-10 h-10 flex-shrink-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">`r`n                        <path d="M16 80V56H21V20H26L50 51L74 20H79V80H74V45L50 64L26 45V56H31V80H16Z" fill="currentColor" class="text-primary transition-colors duration-300"/>`r`n                    </svg>
                     <span><span class="text-primary">Müze</span><span class="text-white">Kart</span></span>
                 </a>
                 <p class="font-body-md text-stone-gray max-w-sm text-sm" data-i18n="footer_desc">Türkiye müzelerinin resmi portalı. Geçmişi koruyor, geleceğe ilham veriyoruz. Bin yıllık mirası kutlamak için bize katılın.</p>
                 
-                <!-- Social Media (3 Icons) -->
-                <div class="flex gap-4">
-                    <a href="https://www.facebook.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Facebook">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                    <a href="https://twitter.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Twitter">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-2 border border-stone-gray/20 hover:border-elegant-gold/50 rounded-full flex items-center justify-center" aria-label="Instagram">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    </a>
-                </div>
+                <!-- Social Media (3 Icons) -->`r`n                <div class="flex gap-4">`r`n                    <a href="https://www.facebook.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-1.5 hover:scale-110 duration-200 flex items-center justify-center" aria-label="Facebook">`r`n                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`r`n                    </a>`r`n                    <a href="https://twitter.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-1.5 hover:scale-110 duration-200 flex items-center justify-center" aria-label="Twitter">`r`n                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>`r`n                    </a>`r`n                    <a href="https://www.instagram.com/Muzekart/" target="_blank" rel="noreferrer noopener" class="text-stone-gray hover:text-elegant-gold transition-colors p-1.5 hover:scale-110 duration-200 flex items-center justify-center" aria-label="Instagram">`r`n                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`r`n                    </a>`r`n                </div>
             </div>
             
             <!-- Column 2: Discovery -->
-            <div>
+            <div class="md:col-span-3 md:col-start-7">
                 <h5 class="text-elegant-gold font-label-caps text-label-caps uppercase mb-8" data-i18n="footer_col_discovery">Discovery</h5>
                 <ul class="space-y-4 font-body-md text-stone-gray text-sm">
                     <li><a class="hover:text-white transition-colors" href="museums.html" data-i18n="footer_map">Map of Museums</a></li>
@@ -767,7 +750,7 @@
             </div>
             
             <!-- Column 3: Corporate Links from Muze.gov.tr -->
-            <div>
+            <div class="md:col-span-3 md:col-start-10">
                 <h5 class="text-elegant-gold font-label-caps text-label-caps uppercase mb-8" data-i18n="footer_col_corporate">Corporate</h5>
                 <ul class="space-y-4 font-body-md text-stone-gray text-sm">
                     <li><a class="hover:text-white transition-colors" href="about.html#contact-section" data-i18n="footer_contact">İletişim</a></li>
