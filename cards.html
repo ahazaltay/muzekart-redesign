@@ -52,8 +52,7 @@
           },
         },
       }
-    </script>
-    <style>
+    </script>    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
@@ -63,13 +62,14 @@
         /* 3D Interactive Card hover effect */
         .card-container-3d {
             perspective: 1000px;
+            position: relative;
         }
         .card-inner-3d {
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             transform-style: preserve-3d;
         }
         .card-container-3d:hover .card-inner-3d {
-            transform: rotateY(8deg) rotateX(4deg) scale(1.02);
+            transform: rotateY(6deg) rotateX(3deg) scale(1.01);
         }
         
         /* Holographic shimmer highlight keyframe */
@@ -94,7 +94,51 @@
         .details-accordion-inner {
             overflow: hidden;
         }
-    </style>
+
+        /* Frameless Floating Card Styles */
+        .card-frameless {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            transition: transform 0.4s ease;
+        }
+        
+        /* Drop shadow behind the 3D card image container */
+        .card-image-shadow {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 1px 6px rgba(0, 0, 0, 0.04);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .dark .card-image-shadow {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Hover lift and glow on shadow */
+        .card-container-3d:hover .card-image-shadow {
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08); /* Faint golden shadow on light mode */
+        }
+        .dark .card-container-3d:hover .card-image-shadow {
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.2), 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Soft glowing aura background on hover */
+        .glow-aura {
+            position: absolute;
+            inset: -30px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.08) 0%, rgba(217, 119, 6, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 50%;
+        }
+        .dark .glow-aura {
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, rgba(217, 119, 6, 0) 70%);
+        }
+        .card-container-3d:hover .glow-aura {
+            opacity: 1;
+        }
+    </style>>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-elegant-gold selection:text-white transition-colors duration-300">
 
@@ -198,581 +242,586 @@
         <p class="font-body-lg text-on-surface-variant dark:text-stone-gray/80 max-w-3xl leading-relaxed" data-i18n="cards_hero_desc">Kültür ve Turizm Bakanlığı'na bağlı tüm devlet müzeleri ve ören yerlerinde geçerli resmi giriş kartları ve bölgesel turist paketleri.</p>
     </section>
 
-    <!-- Segment Selector Tabs -->
-    <section class="max-w-container-max mx-auto px-desktop mb-12">
-        <div class="flex flex-wrap gap-2 justify-center lg:justify-start border-b border-stone-gray/20 dark:border-on-surface-variant/20 pb-4">
-            <button onclick="filterCards('all')" class="tab-btn bg-primary text-white px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300" data-target="all" data-i18n="cards_tab_all">Tüm Kartlar</button>
-            <button onclick="filterCards('citizen')" class="tab-btn bg-stone-gray/10 text-on-surface-variant dark:text-surface-variant hover:bg-stone-gray/20 px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300" data-target="citizen" data-i18n="cards_tab_citizens">T.C. Vatandaşları</button>
-            <button onclick="filterCards('foreign')" class="tab-btn bg-stone-gray/10 text-on-surface-variant dark:text-surface-variant hover:bg-stone-gray/20 px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300" data-target="foreign" data-i18n="cards_tab_foreigners">Yabancı Ziyaretçiler</button>
-        </div>
-    </section>
-
-    <!-- Interactive Cards Grid -->
+    <!-- Interactive Cards Section -->
     <section class="max-w-container-max mx-auto px-desktop">
-        <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        
+        <!-- SECTION 1: YILLIK KARTLAR (T.C. Vatandaşları & İkamet Sahipleri) -->
+        <div class="mb-24">
+            <div class="border-b border-stone-gray/10 dark:border-on-surface-variant/20 pb-4 mb-10 text-center lg:text-left">
+                <h2 class="font-display-lg text-2xl md:text-3xl text-deep-charcoal dark:text-white font-bold tracking-tight uppercase" data-i18n="sec_annual_title">Yerel & Yıllık Kartlar</h2>
+                <p class="text-sm text-on-surface-variant dark:text-stone-gray/80 mt-1" data-i18n="sec_annual_subtitle">T.C. Vatandaşları ve Türkiye'de ikamet izni bulunanlar için geçerli yıllık kartlar</p>
+            </div>
             
-            <!-- Card 1: MüzeKart+ (Citizen) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_plus.jpg" alt="MüzeKart+" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+                
+                <!-- FEATURED CARD: MüzeKart+ (Spotlight - Column 1) -->
+                <div class="lg:col-span-1 bg-stone-gray/5 dark:bg-white/5 border border-stone-gray/25 dark:border-white/5 p-6 rounded-2xl flex flex-col justify-between card-container-3d relative">
+                    <div class="glow-aura"></div>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-mono tracking-widest text-elegant-gold uppercase font-bold" data-i18n="lbl_featured">★ EN ÇOK TERCİH EDİLEN</span>
+                        </div>
+                        
+                        <!-- 3D Card Graphic -->
+                        <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                            <img src="assets/images/muzekart_plus.jpg" alt="MüzeKart+" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                            <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <h4 class="font-display-lg text-2xl text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_muzekart_name">MüzeKart+</h4>
+                            <p class="text-sm text-on-surface-variant dark:text-stone-gray/80 leading-relaxed" data-i18n="c_muzekart_desc">T.C. vatandaşlarına özel standart yıllık giriş kartı.</p>
+                            
+                            <div class="text-xs space-y-1.5 pt-3 border-t border-stone-gray/10 dark:border-white/5">
+                                <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_muzekart_val">365 Gün (1 Yıl)</span></div>
+                                <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_muzekart_price">200 TL</span></div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- Text Details -->
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_muzekart_name">MüzeKart+</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_muzekart_desc">T.C. vatandaşlarına özel standart yıllık giriş kartı.</p>
+                    <div class="mt-6 space-y-3">
+                        <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                            <span data-i18n="btn_details">DETAYLAR</span>
+                            <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                        </button>
                         
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_muzekart_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_muzekart_price">200 TL</span></div>
+                        <div class="details-accordion">
+                            <div class="details-accordion-inner text-xs leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                <div>
+                                    <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                    <p data-i18n="c_muzekart_inc">300'den fazla devlet müzesi ve ören yerine sınırsız giriş.</p>
+                                </div>
+                                <div class="border-t border-stone-gray/5 pt-1.5">
+                                    <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                    <p data-i18n="c_muzekart_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
+                                </div>
+                            </div>
                         </div>
+
+                        <a href="e-ticket.html?pass=muzekart" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-3 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
                     </div>
                 </div>
-
-                <!-- Accordion Toggle and Buttons -->
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
+                
+                <!-- OTHER CARDS GRID: Columns 2 & 3 -->
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
                     
-                    <!-- Accordion Panel -->
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_muzekart_inc">300'den fazla devlet müzesi ve ören yerine sınırsız giriş.</p>
+                    <!-- Card 2: İndirimli MüzeKart -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/muzekart_indirimli.png" alt="İndirimli MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
                             </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_muzekart_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_discounted_name">İndirimli MüzeKart</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_discounted_desc">Öğrenci ve öğretmenlere özel indirimli yıllık giriş kartı.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_discounted_val">365 Gün (1 Yıl)</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_discounted_price">100 TL</span></div>
+                                </div>
                             </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_discounted_inc">Tüm devlet müzelerine indirimli yıllık erişim hakları.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_discounted_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="e-ticket.html?pass=discounted" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
                         </div>
                     </div>
 
-                    <a href="e-ticket.html?pass=muzekart" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
+                    <!-- Card 3: MüzeKart Akademi -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/muzekart_akademi.jpg" alt="MüzeKart Akademi" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_academic_name">MüzeKart Akademi</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_academic_desc">YÖK'e bağlı akademisyenler ve öğretim görevlileri için özel kart.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_academic_val">365 Gün (1 Yıl)</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_academic_price">100 TL</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_academic_inc">Üniversite öğretim elemanları için 300+ müzeye sınırsız giriş.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_academic_exc">Özel sergiler, Harem Dairesi ve özel ören yeri bölümleri hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="e-ticket.html?pass=academic" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: MüzeKart Diplomat -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/muzekart_diplomat.png" alt="MüzeKart Diplomat" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_diplomat_name">MüzeKart Diplomat</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_diplomat_desc">Türkiye'deki yabancı diplomatik misyon personeli için özel yıllık kart.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_diplomat_val">365 Gün (1 Yıl)</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_diplomat_price">60 TL</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_diplomat_inc">Bakanlığa bağlı müze ve ören yerlerine 1 yıl boyunca giriş hakkı.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_diplomat_exc">Özel sergiler, Harem Dairesi ve özel bölümler hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="e-ticket.html?pass=diplomat" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Engelsiz MüzeKart -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/muzekart_engelsiz.png" alt="Engelsiz MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_disabled_name">Engelsiz MüzeKart</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_disabled_desc">Engelli vatandaşlarımız ve refakatçileri için ücretsiz yıllık kart.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_disabled_val">365 Gün (1 Yıl)</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_disabled_price">Ücretsiz</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_disabled_inc">Kültür Bakanlığı'na bağlı müze ve ören yerlerine engelli kimliği veya raporu ile ücretsiz giriş.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_disabled_exc">Özel bölümler ve Harem Dairesi gibi ek ücrete tabi alanlar hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="e-ticket.html?pass=disabled" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Mobil MüzeKart 99 -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/muzekart_99.png" alt="Mobil MüzeKart 99" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_muzekart99_name">Mobil MüzeKart 99</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_muzekart99_desc">Türkiye'de geçerli ikamet veya çalışma izni bulunan yabancılar için.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_muzekart99_val">365 Gün (1 Yıl)</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_muzekart99_price">₺750</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_muzekart99_inc">İkamet sahipleri için 300'den fazla devlet müzesine 1 yıl boyunca giriş hakkı.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_muzekart99_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="e-ticket.html?pass=muzekart99" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 12: Mobil MüzeKart -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/muzekart_mobil.jpg" alt="Mobil MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_mobil_name">Mobil MüzeKart</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_mobil_desc">Müzelerim uygulaması üzerinden anında dijital olarak oluşturulup kullanılan yıllık kart.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_mobil_val">365 Gün (1 Yıl)</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_mobil_price">200 TL</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_mobil_inc">300'den fazla devlet müzesi ve ören yerine QR kod ile sınırsız giriş.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_mobil_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="e-ticket.html?pass=mobil" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 13: Hediye Mobil MüzeKart -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/muzekart_hediye.jpg" alt="Hediye Mobil MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_hediye_name">Hediye Mobil MüzeKart</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_hediye_desc">Sevdiklerinize hediye edebileceğiniz, Müzelerim uygulaması üzerinden aktif edilen dijital kart.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_hediye_val">365 Gün (1 Yıl)</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_hediye_price">200 TL</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_hediye_inc">Hediye edilen kişinin Müzelerim uygulaması üzerinden 1 yıl boyunca müzelere QR kod ile girişini sağlar.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_hediye_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="e-ticket.html?pass=hediye" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
-            <!-- Card 2: İndirimli MüzeKart (Discounted Citizen) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_indirimli.png" alt="İndirimli MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+        <!-- SECTION 2: TURİSTİK GEÇİŞLER (Yabancı Ziyaretçiler & MuseumPass) -->
+        <div>
+            <div class="border-b border-stone-gray/10 dark:border-on-surface-variant/20 pb-4 mb-10 text-center lg:text-left">
+                <h2 class="font-display-lg text-2xl md:text-3xl text-deep-charcoal dark:text-white font-bold tracking-tight uppercase" data-i18n="sec_tourist_title">Turistik Geçişler (MuseumPass)</h2>
+                <p class="text-sm text-on-surface-variant dark:text-stone-gray/80 mt-1" data-i18n="sec_tourist_subtitle">Türkiye'yi ziyaret eden yabancı turistler için hızlı giriş ve kapsamlı paketler</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+                
+                <!-- FEATURED CARD: MuseumPass Türkiye (Spotlight - Column 1) -->
+                <div class="lg:col-span-1 bg-stone-gray/5 dark:bg-white/5 border border-stone-gray/25 dark:border-white/5 p-6 rounded-2xl flex flex-col justify-between card-container-3d relative">
+                    <div class="glow-aura"></div>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-mono tracking-widest text-elegant-gold uppercase font-bold" data-i18n="lbl_featured_tourist">★ ÖNE ÇIKAN SEYAHAT PAKETİ</span>
+                        </div>
+                        
+                        <!-- 3D Card Graphic -->
+                        <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                            <img src="assets/images/museumpass_turkiye.png" alt="MuseumPass Türkiye" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                            <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <h4 class="font-display-lg text-2xl text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_tr_name">MuseumPass Türkiye</h4>
+                            <p class="text-sm text-on-surface-variant dark:text-stone-gray/80 leading-relaxed" data-i18n="c_pass_tr_desc">Türkiye genelindeki tüm tarihi alanlara turist paketi.</p>
+                            
+                            <div class="text-xs space-y-1.5 pt-3 border-t border-stone-gray/10 dark:border-white/5">
+                                <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_tr_val">İlk kullanımdan sonra 15 Gün</span></div>
+                                <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_tr_price">€165</span></div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_discounted_name">İndirimli MüzeKart</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_discounted_desc">Öğrenci ve öğretmenlere özel indirimli yıllık giriş kartı.</p>
+                    <div class="mt-6 space-y-3">
+                        <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                            <span data-i18n="btn_details">DETAYLAR</span>
+                            <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                        </button>
                         
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_discounted_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_discounted_price">100 TL</span></div>
+                        <div class="details-accordion">
+                            <div class="details-accordion-inner text-xs leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                <div>
+                                    <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                    <p data-i18n="c_pass_tr_inc">Türkiye genelindeki tüm devlet müzelerine öncelikli giriş.</p>
+                                </div>
+                                <div class="border-t border-stone-gray/5 pt-1.5">
+                                    <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                    <p data-i18n="c_pass_tr_exc">Rehberli turlar ve belediyelere/özel vakıflara ait müzeler hariçtir.</p>
+                                </div>
+                            </div>
                         </div>
+
+                        <a href="museumpass.html?tab=nationwide" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-3 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
                     </div>
                 </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
+                
+                <!-- OTHER CARDS GRID: Columns 2 & 3 -->
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
                     
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_discounted_inc">Tüm devlet müzelerine indirimli yıllık erişim hakları.</p>
+                    <!-- Card 8: MuseumPass İstanbul -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/museumpass_istanbul.jpg" alt="MuseumPass İstanbul" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
                             </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_discounted_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise hariçtir.</p>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_ist_name">MuseumPass İstanbul</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_ist_desc">İstanbul'un dünyaca ünlü kültürel arşivleri için 5 günlük geçiş.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_ist_val">İlk kullanımdan sonra 5 Gün</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_ist_price">€105</span></div>
+                                </div>
                             </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_pass_ist_inc">Topkapı Sarayı (Harem dahil), Galata Kulesi, Arkeoloji Müzeleri.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_pass_ist_exc">Yerebatan Sarnıcı ve Kız Kulesi gibi bakanlık dışı yapılar hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
                         </div>
                     </div>
 
-                    <a href="e-ticket.html?pass=discounted" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
+                    <!-- Card 9: MuseumPass Kapadokya -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/museumpass_cappadocia.jpg" alt="MuseumPass Kapadokya" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_cap_name">MuseumPass Kapadokya</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_cap_desc">Eşsiz yeraltı şehirleri ve açık hava müzeleri için 3 günlük geçiş.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_cap_val">İlk kullanımdan sonra 3 Gün</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_cap_price">€65</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_pass_cap_inc">Göreme Açık Hava Müzesi, Derinkuyu ve Kaymaklı Yeraltı Şehirleri, Ihlara Vadisi.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_pass_cap_exc">Sıcak hava balonu turları ve özel transferler hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: MuseumPass Akdeniz -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/museumpass_akdeniz.jpg" alt="MuseumPass Akdeniz" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_med_name">MuseumPass Akdeniz</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_med_desc">Akdeniz sahilleri boyunca uzanan antik tiyatrolar için 7 günlük geçiş.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_med_val">İlk kullanımdan sonra 7 Gün</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_med_price">€90</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_pass_med_inc">Antalya, Side, Aspendos, Perge, Alanya Kalesi ve Myra antik kentleri.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_pass_med_exc">Tekne turları ve plaj giriş ücretleri hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 11: MuseumPass Ege -->
+                    <div class="card-item card-frameless flex flex-col justify-between card-container-3d relative">
+                        <div class="glow-aura"></div>
+                        <div class="space-y-4">
+                            <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden card-inner-3d card-image-shadow bg-stone-gray/10 z-10">
+                                <img src="assets/images/museumpass_ege.jpg" alt="MuseumPass Ege" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                                <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_aeg_name">MuseumPass Ege</h4>
+                                <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_aeg_desc">Ege kıyılarındaki görkemli metropoller için 7 günlük geçiş.</p>
+                                
+                                <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_aeg_val">İlk kullanımdan sonra 7 Gün</span></div>
+                                    <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface font-semibold" data-i18n="c_pass_aeg_price">€95</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 space-y-3">
+                            <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
+                                <span data-i18n="btn_details">DETAYLAR</span>
+                                <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
+                            </button>
+                            <div class="details-accordion">
+                                <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
+                                    <div>
+                                        <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
+                                        <p data-i18n="c_pass_aeg_inc">Efes Arkeolojik Sitesi, Pamukkale (Hierapolis), Bodrum Kalesi, Bergama.</p>
+                                    </div>
+                                    <div class="border-t border-stone-gray/5 pt-1.5">
+                                        <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
+                                        <p data-i18n="c_pass_aeg_exc">Meryem Ana Evi ve yamaç evleri (Efes) hariçtir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-all duration-300" data-i18n="cards_buy">Kart Al</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- Card 3: MüzeKart Akademi (Academic) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_akademi.jpg" alt="MüzeKart Akademi" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_academic_name">MüzeKart Akademi</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_academic_desc">YÖK'e bağlı akademisyenler ve öğretim görevlileri için özel kart.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_academic_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_academic_price">100 TL</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_academic_inc">Üniversite öğretim elemanları için 300+ müzeye sınırsız giriş.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_academic_exc">Özel sergiler, Harem Dairesi ve özel ören yeri bölümleri hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="e-ticket.html?pass=academic" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 4: MüzeKart Diplomat (Citizen/Resident Segment) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_diplomat.png" alt="MüzeKart Diplomat" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_diplomat_name">MüzeKart Diplomat</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_diplomat_desc">Türkiye'deki yabancı diplomatik misyon personeli için özel yıllık kart.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_diplomat_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_diplomat_price">60 TL</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_diplomat_inc">Bakanlığa bağlı müze ve ören yerlerine 1 yıl boyunca giriş hakkı.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_diplomat_exc">Özel sergiler, Harem Dairesi ve özel bölümler hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="e-ticket.html?pass=diplomat" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 5: Engelsiz MüzeKart (Citizen/Resident Segment) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_engelsiz.png" alt="Engelsiz MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_disabled_name">Engelsiz MüzeKart</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_disabled_desc">Engelli vatandaşlarımız ve refakatçileri için ücretsiz yıllık kart.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_disabled_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_disabled_price">Ücretsiz</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_disabled_inc">Kültür Bakanlığı'na bağlı müze ve ören yerlerine engelli kimliği veya raporu ile ücretsiz giriş.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_disabled_exc">Özel bölümler ve Harem Dairesi gibi ek ücrete tabi alanlar hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="e-ticket.html?pass=disabled" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 6: Mobil MüzeKart 99 (Citizen/Resident Segment) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_99.png" alt="Mobil MüzeKart 99" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_muzekart99_name">Mobil MüzeKart 99</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_muzekart99_desc">Türkiye'de geçerli ikamet veya çalışma izni bulunan yabancılar için.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_muzekart99_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_muzekart99_price">₺750</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_muzekart99_inc">İkamet sahipleri için 300'den fazla devlet müzesine 1 yıl boyunca giriş hakkı.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_muzekart99_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="e-ticket.html?pass=muzekart99" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 12: Mobil MüzeKart (Citizen Segment) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_mobil.jpg" alt="Mobil MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_mobil_name">Mobil MüzeKart</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_mobil_desc">Müzelerim uygulaması üzerinden anında dijital olarak oluşturulup kullanılan yıllık kart.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_mobil_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_mobil_price">200 TL</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_mobil_inc">300'den fazla devlet müzesi ve ören yerine QR kod ile sınırsız giriş.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_mobil_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="e-ticket.html?pass=mobil" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 13: Hediye Mobil MüzeKart (Citizen Segment) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="citizen">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/muzekart_hediye.jpg" alt="Hediye Mobil MüzeKart" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_hediye_name">Hediye Mobil MüzeKart</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_hediye_desc">Sevdiklerinize hediye edebileceğiniz, Müzelerim uygulaması üzerinden aktif edilen dijital kart.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_hediye_val">365 Gün (1 Yıl)</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_hediye_price">200 TL</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_hediye_inc">Hediye edilen kişinin Müzelerim uygulaması üzerinden 1 yıl boyunca müzelere QR kod ile girişini sağlar.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_hediye_exc">Topkapı Sarayı Harem Dairesi, Galata Kulesi, Göreme Karanlık Kilise ve Dolmabahçe Sarayı hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="e-ticket.html?pass=hediye" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 4: MuseumPass Türkiye (Tourists) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="foreign">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/museumpass_turkiye.png" alt="MuseumPass Türkiye" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_tr_name">MuseumPass Türkiye</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_tr_desc">Türkiye genelindeki tüm tarihi alanlara turist paketi.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_pass_tr_val">İlk kullanımdan sonra 15 Gün</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_pass_tr_price">€165</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_pass_tr_inc">Türkiye genelindeki tüm devlet müzelerine öncelikli giriş.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_pass_tr_exc">Rehberli turlar ve belediyelere/özel vakıflara ait müzeler hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="museumpass.html?tab=nationwide" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 5: MuseumPass İstanbul (Tourists) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="foreign">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/museumpass_istanbul.jpg" alt="MuseumPass İstanbul" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_ist_name">MuseumPass İstanbul</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_ist_desc">İstanbul'un dünyaca ünlü kültürel arşivleri için 5 günlük geçiş.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_pass_ist_val">İlk kullanımdan sonra 5 Gün</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_pass_ist_price">€105</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_pass_ist_inc">Topkapı Sarayı (Harem dahil), Galata Kulesi, Arkeoloji Müzeleri.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_pass_ist_exc">Yerebatan Sarnıcı ve Kız Kulesi gibi bakanlık dışı yapılar hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 6: MuseumPass Kapadokya (Tourists) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="foreign">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/museumpass_cappadocia.jpg" alt="MuseumPass Kapadokya" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_cap_name">MuseumPass Kapadokya</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_cap_desc">Eşsiz yeraltı şehirleri ve açık hava müzeleri için 3 günlük geçiş.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_pass_cap_val">İlk kullanımdan sonra 3 Gün</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_pass_cap_price">€65</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_pass_cap_inc">Göreme Açık Hava Müzesi, Derinkuyu ve Kaymaklı Yeraltı Şehirleri, Ihlara Vadisi.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_pass_cap_exc">Sıcak hava balonu turları ve özel transferler hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 7: MuseumPass Akdeniz (Tourists) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="foreign">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/museumpass_akdeniz.jpg" alt="MuseumPass Akdeniz" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_med_name">MuseumPass Akdeniz</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_med_desc">Akdeniz sahilleri boyunca uzanan antik tiyatrolar için 7 günlük geçiş.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_pass_med_val">İlk kullanımdan sonra 7 Gün</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_pass_med_price">€90</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_pass_med_inc">Antalya, Side, Aspendos, Perge, Alanya Kalesi ve Myra antik kentleri.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_pass_med_exc">Tekne turları ve plaj giriş ücretleri hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
-            <!-- Card 8: MuseumPass Ege (Tourists) -->
-            <div class="card-item bg-paper-white dark:bg-deep-charcoal border border-stone-gray dark:border-on-surface-variant/20 rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 card-container-3d" data-segment="foreign">
-                <div class="space-y-5">
-                    <!-- 3D Card Graphic -->
-                    <div class="relative aspect-[1.586/1] w-full rounded-xl overflow-hidden shadow-lg card-inner-3d bg-stone-gray/10">
-                        <img src="assets/images/museumpass_ege.jpg" alt="MuseumPass Ege" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <div class="absolute inset-0 hologram-shimmer pointer-events-none z-10"></div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <h4 class="font-display-lg text-lg text-deep-charcoal dark:text-white font-bold leading-snug" data-i18n="c_pass_aeg_name">MuseumPass Ege</h4>
-                        <p class="text-xs text-on-surface-variant dark:text-stone-gray/80 line-clamp-2" data-i18n="c_pass_aeg_desc">Ege kıyılarındaki görkemli metropoller için 7 günlük geçiş.</p>
-                        
-                        <div class="text-[11px] space-y-1.5 pt-2 border-t border-stone-gray/10 dark:border-white/5">
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_validity">Geçerlilik:</strong> <span class="text-on-surface" data-i18n="c_pass_aeg_val">İlk kullanımdan sonra 7 Gün</span></div>
-                            <div><strong class="text-elegant-gold" data-i18n="cards_lbl_price">Fiyat:</strong> <span class="text-on-surface" data-i18n="c_pass_aeg_price">€95</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 space-y-3">
-                    <button onclick="toggleDetails(this)" class="w-full text-center text-xs font-semibold text-elegant-gold hover:text-primary transition-colors flex items-center justify-center gap-1">
-                        <span data-i18n="btn_details">DETAYLAR</span>
-                        <span class="material-symbols-outlined text-sm duration-300">expand_more</span>
-                    </button>
-                    
-                    <div class="details-accordion">
-                        <div class="details-accordion-inner text-[10.5px] leading-relaxed text-on-surface-variant dark:text-stone-gray/70 pt-2 space-y-2.5">
-                            <div>
-                                <span class="font-bold text-primary dark:text-elegant-gold block mb-0.5" data-i18n="cards_lbl_inclusions">Dahil Olanlar</span>
-                                <p data-i18n="c_pass_aeg_inc">Efes Arkeolojik Sitesi, Pamukkale (Hierapolis), Bodrum Kalesi, Bergama.</p>
-                            </div>
-                            <div class="border-t border-stone-gray/5 pt-1.5">
-                                <span class="font-bold text-red-500 block mb-0.5" data-i18n="cards_lbl_exclusions">Dahil Olmayanlar</span>
-                                <p data-i18n="c_pass_aeg_exc">Meryem Ana Evi ve yamaç evleri (Efes) hariçtir.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="museumpass.html?tab=regional" class="block text-center w-full bg-deep-charcoal text-white hover:bg-elegant-gold py-2.5 rounded font-button text-xs uppercase tracking-wider transition-colors" data-i18n="cards_buy">Kart Al</a>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -959,35 +1008,6 @@
             accordion.classList.add('open');
             icon.style.transform = 'rotate(180deg)';
         }
-    }
-
-    // Segment Card filter logic
-    function filterCards(segment) {
-        // Update active tab buttons
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            if (btn.getAttribute('data-target') === segment) {
-                btn.classList.add('bg-primary', 'text-white');
-                btn.classList.remove('bg-stone-gray/10', 'text-on-surface-variant', 'dark:text-surface-variant');
-            } else {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('bg-stone-gray/10', 'text-on-surface-variant', 'dark:text-surface-variant');
-            }
-        });
-
-        // Toggle card visibilities
-        document.querySelectorAll('.card-item').forEach(card => {
-            if (segment === 'all' || card.getAttribute('data-segment') === segment) {
-                card.style.display = 'flex';
-                setTimeout(() => {
-                    card.classList.remove('opacity-0', 'scale-95');
-                }, 10);
-            } else {
-                card.classList.add('opacity-0', 'scale-95');
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
-            }
-        });
     }
 
     // Sync theme toggle icon
